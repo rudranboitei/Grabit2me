@@ -1,10 +1,8 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Download, Loader2, Sparkles, Zap, Star } from 'lucide-react';
 import InstallPWA from '@/components/InstallPWA';
+import { Download, Loader2, Star, Zap } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 interface MediaResponse {
   type: 'video' | 'image';
@@ -146,11 +144,11 @@ export default function Home() {
     setDownloadingFormat(downloadId);
     setDownloadStatus('fetching');
     setError('');
-    
+
     try {
       // Use custom URL if provided (for format selection), otherwise use default mediaUrl
       const urlToDownload = customUrl || media.mediaUrl;
-      
+
       // Handle external download links (like y2mate)
       if (isExternal || (customUrl && customUrl.includes('y2mate.com'))) {
         window.open(urlToDownload, '_blank');
@@ -159,10 +157,10 @@ export default function Home() {
         setDownloadStatus('idle');
         return;
       }
-      
+
       // For all platforms - use direct download
       const downloadUrl = `/api/download?url=${encodeURIComponent(urlToDownload)}&type=${media.type}`;
-      
+
       // Create hidden anchor and trigger immediate download
       const link = document.createElement('a');
       link.href = downloadUrl;
@@ -171,7 +169,7 @@ export default function Home() {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      
+
       // Show "Starting..." briefly then reset
       setDownloadStatus('starting');
       setTimeout(() => {
@@ -204,18 +202,18 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#fef3c7]">
+    <div className="min-h-screen bg-background">
       <InstallPWA />
       {/* Decorative elements */}
-      <div className="fixed top-20 left-4 sm:left-10 w-12 h-12 sm:w-20 sm:h-20 bg-[#ff6b9d] border-2 sm:border-3 border-[#1a1a1a] rotate-12 hidden md:block" style={{ boxShadow: '3px 3px 0px 0px #1a1a1a' }}></div>
-      <div className="fixed bottom-20 right-4 sm:right-10 w-10 h-10 sm:w-16 sm:h-16 bg-[#6bcfff] border-2 sm:border-3 border-[#1a1a1a] -rotate-12 hidden md:block" style={{ boxShadow: '3px 3px 0px 0px #1a1a1a' }}></div>
-      <div className="fixed top-40 right-8 sm:right-20 w-8 h-8 sm:w-12 sm:h-12 bg-[#ffd93d] border-2 sm:border-3 border-[#1a1a1a] rotate-45 hidden md:block" style={{ boxShadow: '2px 2px 0px 0px #1a1a1a' }}></div>
-      
+      <div className="fixed top-20 left-4 sm:left-10 w-12 h-12 sm:w-20 sm:h-20 bg-primary border-3 border-black rotate-12 hidden md:block rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"></div>
+      <div className="fixed bottom-20 right-4 sm:right-10 w-10 h-10 sm:w-16 sm:h-16 bg-secondary border-3 border-black -rotate-12 hidden md:block rounded-2xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]"></div>
+      <div className="fixed top-40 right-8 sm:right-20 w-8 h-8 sm:w-12 sm:h-12 bg-accent border-3 border-black rotate-45 hidden md:block rounded-2xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"></div>
+
       <main className="container max-w-5xl mx-auto px-3 sm:px-4 py-32 sm:py-32 relative">
         {/* Hero Section */}
         <div className="mx-auto max-w-3xl text-center space-y-6 sm:space-y-8 mb-8 sm:mb-12">
           {/* Badge */}
-          <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-[#ffd93d] border-2 sm:border-3 border-[#1a1a1a] px-3 sm:px-4 py-1.5 sm:py-2 font-bold text-xs sm:text-sm" style={{ boxShadow: '2px 2px 0px 0px #1a1a1a' }}>
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-accent border-3 border-black px-3 sm:px-4 py-1.5 sm:py-2 font-bold text-xs sm:text-sm rounded-full shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
             <Zap className="h-3 w-3 sm:h-4 sm:w-4" />
             <span className="whitespace-nowrap">Free, fast, no login</span>
             <Star className="h-3 w-3 sm:h-4 sm:w-4 fill-current" />
@@ -223,7 +221,7 @@ export default function Home() {
 
           {/* Title */}
           <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-tight px-2">
-            <span className="inline-block bg-[#ff6b9d] border-2 sm:border-3 border-[#1a1a1a] px-3 sm:px-4 py-1.5 sm:py-2 -rotate-1" style={{ boxShadow: '4px 4px 0px 0px #1a1a1a' }}>
+            <span className="inline-block bg-primary border-3  rounded-full border-black px-3 sm:px-4 py-1.5 sm:py-2 -rotate-1 rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-white">
               grabit2me
             </span>
             <br />
@@ -240,7 +238,7 @@ export default function Home() {
 
         {/* Main Input Card */}
         <div className="mx-auto max-w-2xl mb-8 sm:mb-12 px-2 sm:px-0">
-          <div className="bg-white border-3 border-[#1a1a1a] p-5 sm:p-6 md:p-8" style={{ boxShadow: '5px 5px 0px 0px #1a1a1a' }}>
+          <div className="bg-card border-3 border-black p-5 sm:p-6 md:p-8 rounded-3xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
             <div className="space-y-4 sm:space-y-6">
               {/* Input */}
               <div className="flex flex-col gap-3">
@@ -250,15 +248,13 @@ export default function Home() {
                   value={url}
                   onChange={handleUrlChange}
                   onKeyDown={(e) => e.key === 'Enter' && handleFetchMedia()}
-                  className="w-full h-14 sm:h-16 px-4 sm:px-5 text-base sm:text-lg font-medium bg-white border-3 border-[#1a1a1a] focus:outline-none focus:border-[#ff6b9d] transition-all"
-                  style={{ boxShadow: '3px 3px 0px 0px #1a1a1a' }}
+                  className="w-full h-14 sm:h-16 px-4 sm:px-5 text-base sm:text-lg font-medium bg-white border-3 border-black focus:outline-none focus:border-primary transition-all rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
                   disabled={loading}
                 />
                 {(url || media) && (
                   <button
                     onClick={handleReset}
-                    className="w-full sm:w-auto h-12 sm:h-14 px-6 bg-[#ffd93d] border-3 border-[#1a1a1a] font-bold transition-all duration-150 hover:shadow-md active:shadow-sm text-base sm:text-lg cursor-pointer"
-                    style={{ boxShadow: '3px 3px 0px 0px #1a1a1a' }}
+                    className="w-full sm:w-auto h-12 sm:h-14 px-6 bg-accent border-3 border-black font-bangers font-bold transition-all duration-150 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-base sm:text-lg cursor-pointer rounded-2xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]"
                     title="Clear"
                   >
                     ✕ Clear
@@ -271,8 +267,7 @@ export default function Home() {
                 <button
                   onClick={handleFetchMedia}
                   disabled={loading}
-                  className="w-full h-14 sm:h-16 bg-[#1a1a1a] text-white border-3 border-[#1a1a1a] font-bold text-base sm:text-lg flex items-center justify-center gap-2 transition-all duration-150 hover:shadow-xl active:shadow-md cursor-pointer"
-                  style={{ boxShadow: '5px 5px 0px 0px #ff6b9d' }}
+                  className="font-bangers w-full h-14 sm:h-16 bg-black text-white border-3 border-black font-bold text-base sm:text-lg flex items-center justify-center gap-2 transition-all duration-150 hover:shadow-[7px_7px_0px_0px_rgba(255,107,157,1)] active:shadow-[3px_3px_0px_0px_rgba(255,107,157,1)] cursor-pointer rounded-2xl shadow-[5px_5px_0px_0px_rgba(255,107,157,1)]"
                 >
                   {loading ? (
                     <>
@@ -294,13 +289,13 @@ export default function Home() {
         {/* Loading State */}
         {loading && (
           <div className="mx-auto max-w-2xl mb-6 sm:mb-8">
-            <div className="bg-[#6bcfff] border-2 sm:border-3 border-[#1a1a1a] p-6 sm:p-8" style={{ boxShadow: '4px 4px 0px 0px #1a1a1a' }}>
+            <div className="bg-secondary border-3 border-black p-6 sm:p-8 rounded-3xl shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]">
               <div className="flex flex-col items-center justify-center space-y-3 sm:space-y-4">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white border-2 sm:border-3 border-[#1a1a1a] flex items-center justify-center animate-bounce" style={{ boxShadow: '2px 2px 0px 0px #1a1a1a' }}>
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white border-3 border-black flex items-center justify-center animate-bounce rounded-2xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
                   <Loader2 className="h-6 w-6 sm:h-8 sm:w-8 animate-spin" />
                 </div>
                 <div className="text-center">
-                  <p className="text-base sm:text-lg font-bold">Processing your link...</p>
+                  <p className="font-bangers text-base sm:text-lg font-bold">Processing your link...</p>
                   <p className="text-xs sm:text-sm font-medium">This may take a few moments</p>
                 </div>
               </div>
@@ -311,8 +306,8 @@ export default function Home() {
         {/* Error State */}
         {error && (
           <div className="mx-auto max-w-2xl mb-6 sm:mb-8">
-            <div className="bg-[#ef4444] text-white border-2 sm:border-3 border-[#1a1a1a] p-3 sm:p-4" style={{ boxShadow: '3px 3px 0px 0px #1a1a1a' }}>
-              <p className="text-center font-bold text-sm sm:text-base">{error}</p>
+            <div className="bg-destructive text-white border-3 border-black p-3 sm:p-4 rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <p className="text-center font-bangers font-bold text-sm sm:text-base">{error}</p>
             </div>
           </div>
         )}
@@ -321,8 +316,8 @@ export default function Home() {
         {media && (
           <div className="mx-auto max-w-2xl mb-8 sm:mb-12 space-y-4 sm:space-y-6">
             {/* Video/Image Preview */}
-            <div className="bg-white border-2 sm:border-3 border-[#1a1a1a] overflow-hidden" style={{ boxShadow: '4px 4px 0px 0px #1a1a1a' }}>
-              <div className="relative w-full bg-[#1a1a1a] flex items-center justify-center max-h-[70vh]">
+            <div className="bg-card border-3 border-black overflow-hidden rounded-3xl shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]">
+              <div className="relative w-full bg-black flex items-center justify-center max-h-[70vh] rounded-t-3xl overflow-hidden">"
                 {media.type === 'video' ? (
                   <video
                     controls

@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
 
 export const metadata = {
   title: 'Privacy Policy - grabit2me',
@@ -10,16 +10,16 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen py-24 bg-background">
       <div className="container max-w-4xl mx-auto px-4">
-        <Link href="/" className="inline-flex items-center gap-2 px-4 py-2 bg-white border-3 border-[#1a1a1a] font-bold text-sm transition-all hover:shadow-md mb-8">
+        <Link href="/" className="inline-flex  rounded-2xl items-center gap-2 px-4 py-2 bg-white border-3 border-[#1a1a1a] font-bold text-sm transition-all hover:shadow-md mb-8">
           <ArrowLeft className="h-4 w-4" />
           Back to Home
         </Link>
 
         <div className="mb-8">
-          <h1 className="text-4xl sm:text-5xl font-black inline-block bg-[#6bcfff] border-3 border-[#1a1a1a] px-6 py-3 rotate-1 shadow-md">Privacy Policy</h1>
+          <h1 className="text-4xl sm:text-5xl rounded-full font-black inline-block bg-[#6bcfff] border-3 border-[#1a1a1a] px-6 py-3 rotate-1 shadow-md">Privacy Policy</h1>
         </div>
 
-        <div className="bg-white border-3 border-[#1a1a1a] p-6 sm:p-8 shadow-lg space-y-6">
+        <div className="bg-white rounded-2xl border-3 border-[#1a1a1a] p-6 sm:p-8 shadow-lg space-y-6">
           <section>
             <h2 className="text-2xl font-black mb-4 pb-2 border-b-3 border-[#1a1a1a]">1. Information We Collect</h2>
             <p>

@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
 
 export const metadata = {
   title: 'DMCA Policy - grabit2me',
@@ -10,16 +10,16 @@ export default function DMCAPage() {
   return (
     <div className="min-h-screen py-24 bg-background">
       <div className="container max-w-4xl mx-auto px-4">
-        <Link href="/" className="inline-flex items-center gap-2 px-4 py-2 bg-white border-3 border-[#1a1a1a] font-bold text-sm transition-all hover:shadow-md mb-8">
+        <Link href="/" className="inline-flex  rounded-2xl items-center gap-2 px-4 py-2 bg-white border-3 border-[#1a1a1a] font-bold text-sm transition-all hover:shadow-md mb-8">
           <ArrowLeft className="h-4 w-4" />
           Back to Home
         </Link>
 
         <div className="mb-8">
-          <h1 className="text-4xl sm:text-5xl font-black inline-block bg-[#c084fc] border-3 border-[#1a1a1a] px-6 py-3 -rotate-1 shadow-md text-white">DMCA Policy</h1>
+          <h1 className="text-4xl sm:text-5xl  rounded-full font-black inline-block bg-[#c084fc] border-3 border-[#1a1a1a] px-6 py-3 -rotate-1 shadow-md text-white">DMCA Policy</h1>
         </div>
 
-        <div className="bg-white border-3 border-[#1a1a1a] p-6 sm:p-8 shadow-lg space-y-6">
+        <div className="bg-white rounded-2xl border-3 border-[#1a1a1a] p-6 sm:p-8 shadow-lg space-y-6">
           <section>
             <h2 className="text-2xl font-black mb-4 pb-2 border-b-3 border-[#1a1a1a]">Digital Millennium Copyright Act Notice</h2>
             <p>

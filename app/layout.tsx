@@ -1,9 +1,24 @@
-import type { Metadata } from "next";
-import "./globals.css";
 import PWARegister from "@/components/PWARegister";
-import { HeroHeader } from "@/components/section/Header";
 import { Footer } from "@/components/section/Footer";
-import { Analytics } from "@vercel/analytics/next"
+import { HeroHeader } from "@/components/section/Header";
+import { Analytics } from "@vercel/analytics/next";
+import type { Metadata } from "next";
+import { Bangers, Kalam } from 'next/font/google';
+import "./globals.css";
+
+const bangers = Bangers({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-bangers',
+  display: 'swap',
+});
+
+const kalam = Kalam({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-kalam',
+  display: 'swap',
+});
 
 export const viewport = {
   width: "device-width",
@@ -119,16 +134,16 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff" />
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-tap-highlight" content="no" />
-        
+
         <link rel="manifest" href="/manifest.json?v=4" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
         <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
-        
+
         {/* Apple Touch Icons */}
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        
+
         {/* iOS Splash Screens - iPhone */}
         <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/apple-splash-1170-2532.png" />
         <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/apple-splash-1125-2436.png" />
@@ -137,20 +152,21 @@ export default function RootLayout({
         <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/apple-splash-1125-2436.png" />
         <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/apple-splash-1242-2688.png" />
         <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="/apple-splash-828-1792.png" />
-        
+
         {/* iOS Splash Screens - iPad */}
         <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="/apple-splash-2048-2732.png" />
         <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="/apple-splash-1668-2388.png" />
         <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="/apple-splash-1668-2388.png" />
         <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="/apple-splash-1536-2048.png" />
-        
+
         {/* Fallback iOS Splash Screens */}
         <link rel="apple-touch-startup-image" media="(prefers-color-scheme: light)" href="/ios-light.png" />
         <link rel="apple-touch-startup-image" media="(prefers-color-scheme: dark)" href="/ios-dark.png" />
         <link rel="apple-touch-startup-image" href="/ios-tinted.png" />
       </head>
       <body
-        className="font-sans antialiased"
+        className={`${kalam.variable} ${bangers.variable} antialiased`}
+        style={{ fontFamily: 'var(--font-kalam), ui-sans-serif, system-ui, sans-serif' }}
       >
         <HeroHeader />
         <PWARegister />
