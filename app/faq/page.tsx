@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
 
 export const metadata = {
   title: 'FAQ - grabit2me',
@@ -10,16 +10,16 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen py-24 bg-background">
       <div className="container max-w-4xl mx-auto px-4">
-        <Link href="/" className="inline-flex items-center gap-2 px-4 py-2 bg-white border-3 border-[#1a1a1a] font-bold text-sm transition-all hover:shadow-md mb-8">
+        <Link href="/" className="inline-flex items-center rounded-2xl gap-2 px-4 py-2 bg-white border-3 border-[#1a1a1a] font-bold text-sm transition-all hover:shadow-md mb-8">
           <ArrowLeft className="h-4 w-4" />
           Back to Home
         </Link>
 
         <div className="mb-8">
-          <h1 className="text-4xl sm:text-5xl font-black inline-block bg-[#98ee99] border-3 border-[#1a1a1a] px-6 py-3 rotate-1 shadow-md">FAQ</h1>
+          <h1 className="text-4xl sm:text-5xl font-black  rounded-full inline-block bg-[#98ee99] border-3 border-[#1a1a1a] px-6 py-3 rotate-1 shadow-md">FAQ</h1>
         </div>
 
-        <div className="bg-white border-3 border-[#1a1a1a] p-6 sm:p-8 shadow-lg space-y-8">
+        <div className="bg-white border-3 border-[#1a1a1a] p-6 sm:p-8 shadow-lg space-y-8 rounded-2xl">
           <section className="space-y-3 pb-6 border-b-2 border-[#1a1a1a] last:border-b-0">
             <h2 className="text-xl font-black">How does grabit2me work?</h2>
             <p className="font-medium">

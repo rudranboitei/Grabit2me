@@ -66,19 +66,64 @@ export async function POST(request: NextRequest) {
 
     // Determine media type and URL
     let mediaUrl: string | null = null;
-    let type: 'video' | 'image' | null = null;
+    let type: 'video' | 'image' | 'carousel' | null = null;
+    let carouselItems: Array<{ type: 'video' | 'image'; url: string; thumbnail?: string }> = [];
 
     // Priority 1: Try to extract video from inline JavaScript data (most reliable for reels)
     const scriptTags = $('script').toArray();
     for (const script of scriptTags) {
       const scriptContent = $(script).html() || '';
       
+      // Check for carousel posts first
+      const carouselMatch = scriptContent.match(/"edge_sidecar_to_children":\s*\{[^}]*"edges":\s*\[([^\]]+)\]/);
+      if (carouselMatch) {
+        type = 'carousel';
+        const carouselData = carouselMatch[0];
+        
+        // Extract all media items from carousel
+        const nodeMatches = carouselData.matchAll(/"node":\s*\{([^}]+(?:\{[^}]*\}[^}]*)*)\}/g);
+        
+        for (const nodeMatch of nodeMatches) {
+          const nodeContent = nodeMatch[1];
+          
+          // Check if it's a video
+          const isVideo = nodeContent.includes('"is_video":true');
+          
+          if (isVideo) {
+            const videoMatch = nodeContent.match(/"video_url":"([^"]+)"/);
+            if (videoMatch) {
+              const videoUrl = videoMatch[1].replace(/\\u0026/g, '&').replace(/\\/g, '');
+              const thumbnailMatch = nodeContent.match(/"display_url":"([^"]+)"/);
+              carouselItems.push({
+                type: 'video',
+                url: videoUrl,
+                thumbnail: thumbnailMatch ? thumbnailMatch[1].replace(/\\u0026/g, '&').replace(/\\/g, '') : undefined
+              });
+            }
+          } else {
+            // It's an image
+            const imageMatch = nodeContent.match(/"display_url":"([^"]+)"/);
+            if (imageMatch) {
+              const imageUrl = imageMatch[1].replace(/\\u0026/g, '&').replace(/\\/g, '');
+              carouselItems.push({
+                type: 'image',
+                url: imageUrl
+              });
+            }
+          }
+        }
+        
+        if (carouselItems.length > 0) {
+          break;
+        }
+      }
+      
       // Multiple patterns to find the highest quality video URL
       // Pattern 1: Look for video_url with highest resolution
       const videoUrlMatches = scriptContent.matchAll(/"video_url":"([^"]+)"/g);
       const videoUrls = Array.from(videoUrlMatches).map(m => m[1]);
       
-      if (videoUrls.length > 0) {
+      if (videoUrls.length > 0 && type !== 'carousel') {
         // Pick the first one (usually highest quality)
         mediaUrl = videoUrls[0].replace(/\\u0026/g, '&').replace(/\\/g, '');
         type = 'video';
@@ -236,9 +281,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log('Successfully extracted:', { type, mediaUrlLength: mediaUrl.length });
+    console.log('Successfully extracted:', { type, mediaUrlLength: mediaUrl?.length, carouselItemsCount: carouselItems.length });
 
     // Return the extracted data
+    if (type === 'carousel' && carouselItems.length > 0) {
+      return NextResponse.json({
+        type: 'carousel',
+        carouselItems,
+        title: ogTitle || 'Instagram Carousel Post',
+        description: ogDescription || '',
+      });
+    }
+
     return NextResponse.json({
       type,
       mediaUrl,

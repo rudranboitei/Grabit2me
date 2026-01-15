@@ -5,12 +5,17 @@ import { Download, Loader2, Star, Zap } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 interface MediaResponse {
-  type: 'video' | 'image';
-  mediaUrl: string;
+  type: 'video' | 'image' | 'carousel';
+  mediaUrl?: string;
   title?: string;
   description?: string;
   thumbnail?: string;
   externalDownload?: boolean;
+  carouselItems?: Array<{
+    type: 'video' | 'image';
+    url: string;
+    thumbnail?: string;
+  }>;
   availableFormats?: {
     video: Array<{
       quality: string;
@@ -40,6 +45,7 @@ export default function Home() {
   const [media, setMedia] = useState<MediaResponse | null>(null);
   const [error, setError] = useState('');
   const [selectedFormat, setSelectedFormat] = useState<string>(''); // For format selection
+  const [selectedCarouselItems, setSelectedCarouselItems] = useState<Set<number>>(new Set());
   const previousUrlRef = useRef('');
 
   const detectPlatform = (url: string): Platform => {
@@ -147,7 +153,15 @@ export default function Home() {
 
     try {
       // Use custom URL if provided (for format selection), otherwise use default mediaUrl
-      const urlToDownload = customUrl || media.mediaUrl;
+      const urlToDownload = customUrl || media.mediaUrl || '';
+      
+      if (!urlToDownload) {
+        setError('No media URL available for download');
+        setDownloading(false);
+        setDownloadingFormat(null);
+        setDownloadStatus('idle');
+        return;
+      }
 
       // Handle external download links (like y2mate)
       if (isExternal || (customUrl && customUrl.includes('y2mate.com'))) {
@@ -159,12 +173,13 @@ export default function Home() {
       }
 
       // For all platforms - use direct download
-      const downloadUrl = `/api/download?url=${encodeURIComponent(urlToDownload)}&type=${media.type}`;
+      const mediaType = media.type || 'video';
+      const downloadUrl = `/api/download?url=${encodeURIComponent(urlToDownload)}&type=${mediaType}`;
 
       // Create hidden anchor and trigger immediate download
       const link = document.createElement('a');
       link.href = downloadUrl;
-      link.download = `grabit-${media.type}-${Date.now()}.${media.type === 'video' ? 'mp4' : 'jpg'}`;
+      link.download = `grabit-${mediaType}-${Date.now()}.${mediaType === 'video' ? 'mp4' : 'jpg'}`;
       link.style.display = 'none';
       document.body.appendChild(link);
       link.click();
@@ -315,9 +330,150 @@ export default function Home() {
         {/* Media Preview */}
         {media && (
           <div className="mx-auto max-w-2xl mb-8 sm:mb-12 space-y-4 sm:space-y-6">
-            {/* Video/Image Preview */}
+            {/* Carousel Preview */}
+            {media.type === 'carousel' && media.carouselItems && media.carouselItems.length > 0 ? (
+              <div className="bg-card border-3 border-black rounded-3xl shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
+                {/* Title */}
+                {media.title && (
+                  <div className="p-4 sm:p-5 border-b-3 border-black bg-accent">
+                    <p className="font-bangers text-lg sm:text-xl tracking-wide">📸 Instagram Carousel ({media.carouselItems.length} items)</p>
+                    {media.description && (
+                      <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{media.description}</p>
+                    )}
+                  </div>
+                )}
+
+                {/* Carousel Items Grid */}
+                <div className="p-4 sm:p-5">
+                  <p className="font-bangers text-base sm:text-lg tracking-wide mb-4">Select items to download:</p>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+                    {media.carouselItems.map((item, index) => {
+                      const isSelected = selectedCarouselItems.has(index);
+                      return (
+                        <div
+                          key={index}
+                          onClick={() => {
+                            const newSelected = new Set(selectedCarouselItems);
+                            if (isSelected) {
+                              newSelected.delete(index);
+                            } else {
+                              newSelected.add(index);
+                            }
+                            setSelectedCarouselItems(newSelected);
+                          }}
+                          className={`relative cursor-pointer group border-3 border-black rounded-2xl overflow-hidden transition-all ${
+                            isSelected 
+                              ? 'shadow-[4px_4px_0px_0px_rgba(255,107,157,1)] ring-4 ring-primary' 
+                              : 'shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]'
+                          }`}
+                        >
+                          {/* Checkbox */}
+                          <div className="absolute top-2 right-2 z-10">
+                            <div className={`w-6 h-6 border-3 border-black rounded-lg flex items-center justify-center ${
+                              isSelected ? 'bg-primary' : 'bg-white'
+                            } shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]`}>
+                              {isSelected && <span className="text-white text-sm font-bold">✓</span>}
+                            </div>
+                          </div>
+
+                          {/* Media Preview */}
+                          <div className="aspect-square bg-black flex items-center justify-center">
+                            {item.type === 'video' ? (
+                              <div className="relative w-full h-full">
+                                <img
+                                  src={item.thumbnail || item.url}
+                                  alt={`Carousel item ${index + 1}`}
+                                  className="w-full h-full object-cover"
+                                />
+                                <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                  <div className="w-12 h-12 bg-white border-3 border-black rounded-full flex items-center justify-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                                    <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                      <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                  </div>
+                                </div>
+                              </div>
+                            ) : (
+                              <img
+                                src={item.url}
+                                alt={`Carousel item ${index + 1}`}
+                                className="w-full h-full object-cover"
+                              />
+                            )}
+                          </div>
+
+                          {/* Type Badge */}
+                          <div className="absolute bottom-2 left-2 bg-black text-white px-2 py-1 text-xs font-bold rounded-lg border-2 border-black shadow-[2px_2px_0px_0px_rgba(255,255,255,0.5)]">
+                            {item.type === 'video' ? '🎥 Video' : '🖼️ Image'} #{index + 1}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="mt-6 space-y-3">
+                    <div className="flex gap-3">
+                      <button
+                        onClick={() => setSelectedCarouselItems(new Set(media.carouselItems?.map((_, i) => i) || []))}
+                        className="flex-1 h-12 bg-secondary text-white border-3 border-black font-bangers text-sm rounded-2xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
+                      >
+                        ✓ Select All
+                      </button>
+                      <button
+                        onClick={() => setSelectedCarouselItems(new Set())}
+                        className="flex-1 h-12 bg-background border-3 border-black font-bangers text-sm rounded-2xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
+                      >
+                        ✕ Deselect All
+                      </button>
+                    </div>
+
+                    <button
+                      onClick={() => {
+                        if (selectedCarouselItems.size === 0) {
+                          setError('Please select at least one item to download');
+                          return;
+                        }
+                        // Download selected items
+                        selectedCarouselItems.forEach((index) => {
+                          const item = media.carouselItems?.[index];
+                          if (item) {
+                            const link = document.createElement('a');
+                            link.href = item.url;
+                            link.download = `carousel-item-${index + 1}.${item.type === 'video' ? 'mp4' : 'jpg'}`;
+                            link.target = '_blank';
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                          }
+                        });
+                      }}
+                      disabled={downloading || selectedCarouselItems.size === 0}
+                      className={`font-bangers w-full h-14 sm:h-16 bg-primary text-white border-3 border-black font-bold text-base sm:text-lg flex items-center justify-center gap-2 transition-all rounded-2xl ${
+                        selectedCarouselItems.size === 0
+                          ? 'opacity-50 cursor-not-allowed shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]'
+                          : 'shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:shadow-[7px_7px_0px_0px_rgba(0,0,0,1)]'
+                      }`}
+                    >
+                      {downloading ? (
+                        <>
+                          <Loader2 className="h-5 w-5 animate-spin" />
+                          Downloading...
+                        </>
+                      ) : (
+                        <>
+                          <Download className="h-5 w-5" />
+                          Download Selected ({selectedCarouselItems.size})
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+            /* Video/Image Preview */
             <div className="bg-card border-3 border-black overflow-hidden rounded-3xl shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]">
-              <div className="relative w-full bg-black flex items-center justify-center max-h-[70vh] rounded-t-3xl overflow-hidden">"
+              <div className="relative w-full bg-black flex items-center justify-center max-h-[70vh] rounded-t-3xl overflow-hidden">
                 {media.type === 'video' ? (
                   <video
                     controls
@@ -413,7 +569,7 @@ export default function Home() {
                                 key={index}
                                 onClick={() => handleDownload(format.url, false, formatId)}
                                 disabled={downloading}
-                                className="h-12 px-4 bg-[#c084fc] border-3 border-[#1a1a1a] font-bold text-sm flex items-center gap-2 transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none cursor-pointer disabled:opacity-70 disabled:cursor-wait"
+                                className="h-12 px-4 bg-[#c084fc] border-3 border-[#1a1a1a] font-bold text-sm flex items-center gap-2 rounded-2xl transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none cursor-pointer disabled:opacity-70 disabled:cursor-wait"
                                 style={{ boxShadow: isThisDownloading ? 'none' : '3px 3px 0px 0px #1a1a1a', transform: isThisDownloading ? 'translate(2px, 2px)' : undefined }}
                               >
                                 {isThisDownloading ? (
@@ -458,6 +614,7 @@ export default function Home() {
                 )}
               </div>
             </div>
+            )}
           </div>
         )}
 
