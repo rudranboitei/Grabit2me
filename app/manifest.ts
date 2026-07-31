@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'grabit2me - Social Media Video Downloader',
+    name: 'grabit2me',
     short_name: 'grabit2me',
     description: 'Download videos and images from Instagram, X, Threads, LinkedIn, Snapchat, and YouTube instantly. Fast, free, and easy to use.',
     start_url: '/',
