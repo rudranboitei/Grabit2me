@@ -1,4 +1,6 @@
 import PWARegister from "@/components/PWARegister";
+import { SplashScreens } from "@/components/SplashScreens";
+import { Header } from "@/components/Header";
 import { Footer } from "@/components/section/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
@@ -116,8 +118,10 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff" />
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-tap-highlight" content="no" />
+        <SplashScreens />
       </head>
-      <body className="font-sans font-[599]">
+      <body className="font-sans font-medium text-foreground bg-background pt-20">
+        <Header />
         <PWARegister />
         <Analytics />
         <TooltipProvider>{children}</TooltipProvider>
@@ -132,7 +136,7 @@ export default function RootLayout({
               borderRadius: '9999px',
               padding: '16px 24px',
               fontSize: '16px',
-              fontWeight: 599
+              fontWeight: 500
             }
           }} 
         />

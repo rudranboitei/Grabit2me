@@ -35,6 +35,16 @@ export default function InstallPWA() {
       return; // Already installed
     }
 
+    // Custom event listener for manual triggers
+    const handleCustomInstallEvent = () => {
+      if (ios) {
+        setShowIOSPrompt(true);
+      } else {
+        setShowInstall(true);
+      }
+    };
+    window.addEventListener('show-pwa-install', handleCustomInstallEvent);
+
     // Only show reminders on mobile devices
     if (isMobile) {
       // Check reminder banner dismissal
@@ -56,7 +66,6 @@ export default function InstallPWA() {
       if (!hasSeenPrompt || (dismissedTime && Date.now() - parseInt(dismissedTime) > 1 * 24 * 60 * 60 * 1000)) {
         setTimeout(() => setShowIOSPrompt(true), 1000);
       }
-      return;
     }
 
     // Handle Android install prompt (mobile only)
@@ -78,8 +87,13 @@ export default function InstallPWA() {
 
       return () => {
         window.removeEventListener('beforeinstallprompt', handler);
+        window.removeEventListener('show-pwa-install', handleCustomInstallEvent);
       };
     }
+
+    return () => {
+      window.removeEventListener('show-pwa-install', handleCustomInstallEvent);
+    };
   }, []);
 
   const handleInstallClick = async () => {
@@ -140,13 +154,13 @@ export default function InstallPWA() {
                   <img src="/icon-192.png" alt="GrabIt2Me Logo" className="h-7 w-7 object-contain" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-lg font-[599] text-white leading-tight">Install App</span>
+                  <span className="text-lg font-semibold text-white leading-tight">Install App</span>
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 <button 
                   onClick={handleReminderInstall}
-                  className="px-6 py-3 bg-white text-black rounded-full font-[599] text-base hover:bg-gray-100 transition-colors"
+                  className="px-6 py-3 bg-white text-black rounded-full font-semibold text-base hover:bg-gray-100 transition-colors"
                 >
                   Get
                 </button>
@@ -168,28 +182,28 @@ export default function InstallPWA() {
                 <div className="w-24 h-24 rounded-[24px] bg-white flex items-center justify-center shrink-0 mb-6 shadow-2xl border border-gray-100">
                   <img src="/icon-192.png" alt="GrabIt2Me Logo" className="w-16 h-16 object-contain" />
                 </div>
-                <SheetTitle className="text-3xl md:text-4xl font-[599] text-black tracking-tighter">Install GrabIt2Me</SheetTitle>
+                <SheetTitle className="text-3xl md:text-4xl font-semibold text-black tracking-tighter">Install GrabIt2Me</SheetTitle>
                 <SheetDescription className="text-base md:text-lg font-medium text-gray-500 mt-2">
                   Get the best experience directly on your home screen.
                 </SheetDescription>
               </SheetHeader>
 
               <div className="space-y-4 mb-10">
-                <ol className="space-y-6 text-lg md:text-xl text-gray-600 font-[599] tracking-tight">
+                <ol className="space-y-6 text-lg md:text-xl text-gray-600 font-semibold tracking-tight">
                   <li className="flex items-center gap-5">
-                    <span className="shrink-0 w-12 h-12 rounded-full bg-black flex items-center justify-center text-lg font-[599] text-white">1</span>
+                    <span className="shrink-0 w-12 h-12 rounded-full bg-black flex items-center justify-center text-lg font-semibold text-white">1</span>
                     <span>
                       Tap <Share2 className="inline w-7 h-7 mx-1 text-black" /> Share below.
                     </span>
                   </li>
                   <li className="flex items-center gap-5">
-                    <span className="shrink-0 w-12 h-12 rounded-full bg-black flex items-center justify-center text-lg font-[599] text-white">2</span>
+                    <span className="shrink-0 w-12 h-12 rounded-full bg-black flex items-center justify-center text-lg font-semibold text-white">2</span>
                     <span>
                       Tap <strong className="text-black">"Add to Home Screen"</strong>.
                     </span>
                   </li>
                   <li className="flex items-center gap-5">
-                    <span className="shrink-0 w-12 h-12 rounded-full bg-black flex items-center justify-center text-lg font-[599] text-white">3</span>
+                    <span className="shrink-0 w-12 h-12 rounded-full bg-black flex items-center justify-center text-lg font-semibold text-white">3</span>
                     <span>
                       Tap <strong className="text-black">"Add"</strong> to finish.
                     </span>
@@ -200,7 +214,7 @@ export default function InstallPWA() {
               <SheetFooter>
                 <button 
                   onClick={handleIOSDismiss} 
-                  className="w-full h-16 bg-black text-white rounded-full font-[599] text-xl hover:bg-gray-800 transition-colors shadow-2xl"
+                  className="w-full h-16 bg-black text-white rounded-full font-semibold text-xl hover:bg-gray-800 transition-colors shadow-2xl"
                 >
                   Done
                 </button>
@@ -224,13 +238,13 @@ export default function InstallPWA() {
                 <img src="/icon-192.png" alt="GrabIt2Me Logo" className="h-7 w-7 object-contain" />
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-[599] text-white leading-tight">Install App</span>
+                <span className="text-lg font-semibold text-white leading-tight">Install App</span>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <button 
                 onClick={handleReminderInstall}
-                className="px-6 py-3 bg-white text-black rounded-full font-[599] text-base hover:bg-gray-100 transition-colors"
+                className="px-6 py-3 bg-white text-black rounded-full font-semibold text-base hover:bg-gray-100 transition-colors"
               >
                 Get
               </button>
@@ -252,7 +266,7 @@ export default function InstallPWA() {
               <div className="w-24 h-24 rounded-[24px] bg-white flex items-center justify-center shrink-0 mb-6 shadow-2xl border border-gray-100">
                 <img src="/icon-192.png" alt="GrabIt2Me Logo" className="w-16 h-16 object-contain" />
               </div>
-              <SheetTitle className="text-3xl md:text-4xl font-[599] text-black tracking-tighter">Install GrabIt2Me</SheetTitle>
+              <SheetTitle className="text-3xl md:text-4xl font-semibold text-black tracking-tighter">Install GrabIt2Me</SheetTitle>
               <SheetDescription className="text-base md:text-lg font-medium text-gray-500 mt-2">
                 Lightning fast access directly from your home screen.
               </SheetDescription>
@@ -264,7 +278,7 @@ export default function InstallPWA() {
                   <Smartphone className="w-7 h-7" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-[599] text-black tracking-tight">Works Offline</h4>
+                  <h4 className="text-xl font-semibold text-black tracking-tight">Works Offline</h4>
                   <p className="text-gray-500 text-base font-medium mt-0.5">Reliable even with poor connection</p>
                 </div>
               </div>
@@ -274,7 +288,7 @@ export default function InstallPWA() {
                   <Download className="w-7 h-7" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-[599] text-black tracking-tight">Lightning Fast</h4>
+                  <h4 className="text-xl font-semibold text-black tracking-tight">Lightning Fast</h4>
                   <p className="text-gray-500 text-base font-medium mt-0.5">Native application performance</p>
                 </div>
               </div>
@@ -283,13 +297,13 @@ export default function InstallPWA() {
             <SheetFooter className="flex flex-col gap-4">
               <button 
                 onClick={handleInstallClick} 
-                className="w-full h-16 bg-black text-white rounded-full font-[599] text-xl hover:bg-gray-800 transition-colors shadow-2xl"
+                className="w-full h-16 bg-black text-white rounded-full font-semibold text-xl hover:bg-gray-800 transition-colors shadow-2xl"
               >
                 Install Now
               </button>
               <button 
                 onClick={handleDismiss} 
-                className="w-full h-16 bg-white text-gray-500 rounded-full font-[599] text-lg hover:text-black transition-colors"
+                className="w-full h-16 bg-white text-gray-500 rounded-full font-semibold text-lg hover:text-black transition-colors"
               >
                 Maybe Later
               </button>
