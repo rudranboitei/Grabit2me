@@ -1,6 +1,5 @@
 import PWARegister from "@/components/PWARegister";
 import { SplashScreens } from "@/components/SplashScreens";
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/section/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
@@ -120,8 +119,7 @@ export default function RootLayout({
         <meta name="msapplication-tap-highlight" content="no" />
         <SplashScreens />
       </head>
-      <body className="font-sans font-medium text-foreground bg-background pt-20">
-        <Header />
+      <body className="font-sans font-medium text-foreground bg-background">
         <PWARegister />
         <Analytics />
         <TooltipProvider>{children}</TooltipProvider>

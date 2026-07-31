@@ -160,13 +160,13 @@ export default function InstallPWA() {
               <div className="flex items-center gap-2">
                 <button 
                   onClick={handleReminderInstall}
-                  className="px-6 py-3 bg-white text-black rounded-full font-semibold text-base hover:bg-gray-100 transition-colors"
+                  className="px-6 py-3 bg-white text-black rounded-[24px] font-semibold text-base hover:bg-gray-100 transition-colors"
                 >
                   Get
                 </button>
                 <button
                   onClick={handleReminderDismiss}
-                  className="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:text-white transition-colors"
+                  className="w-10 h-10 flex items-center justify-center rounded-[24px] text-gray-400 hover:text-white transition-colors"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -176,7 +176,7 @@ export default function InstallPWA() {
         )}
 
         <Sheet open={showIOSPrompt} onOpenChange={setShowIOSPrompt}>
-          <SheetContent side="bottom" className="h-auto bg-white border-0 p-6 md:p-10 rounded-t-[40px] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.1)]">
+          <SheetContent side="bottom" className="h-auto bg-white/95 backdrop-blur-2xl border-t border-white/20 p-6 md:p-10 rounded-t-[40px] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.15)]">
             <div className="max-w-md mx-auto">
               <SheetHeader className="text-center mb-10 flex flex-col items-center">
                 <div className="w-24 h-24 rounded-[24px] bg-white flex items-center justify-center shrink-0 mb-6 shadow-2xl border border-gray-100">
@@ -214,7 +214,7 @@ export default function InstallPWA() {
               <SheetFooter>
                 <button 
                   onClick={handleIOSDismiss} 
-                  className="w-full h-16 bg-black text-white rounded-full font-semibold text-xl hover:bg-gray-800 transition-colors shadow-2xl"
+                  className="w-full h-16 bg-black text-white rounded-[24px] font-semibold text-xl hover:bg-gray-800 transition-colors shadow-2xl"
                 >
                   Done
                 </button>
@@ -244,13 +244,13 @@ export default function InstallPWA() {
             <div className="flex items-center gap-2">
               <button 
                 onClick={handleReminderInstall}
-                className="px-6 py-3 bg-white text-black rounded-full font-semibold text-base hover:bg-gray-100 transition-colors"
+                className="px-6 py-3 bg-white text-black rounded-[24px] font-semibold text-base hover:bg-gray-100 transition-colors"
               >
                 Get
               </button>
               <button
                 onClick={handleReminderDismiss}
-                className="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:text-white transition-colors"
+                className="w-10 h-10 flex items-center justify-center rounded-[24px] text-gray-400 hover:text-white transition-colors"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -260,7 +260,7 @@ export default function InstallPWA() {
       )}
 
       <Sheet open={showInstall} onOpenChange={setShowInstall}>
-        <SheetContent side="bottom" className="h-auto bg-white border-0 p-6 md:p-10 rounded-t-[40px] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.1)]">
+        <SheetContent side="bottom" className="h-auto bg-white/95 backdrop-blur-2xl border-t border-white/20 p-6 md:p-10 rounded-t-[40px] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.15)]">
           <div className="max-w-md mx-auto">
             <SheetHeader className="text-center mb-10 flex flex-col items-center">
               <div className="w-24 h-24 rounded-[24px] bg-white flex items-center justify-center shrink-0 mb-6 shadow-2xl border border-gray-100">
@@ -297,13 +297,13 @@ export default function InstallPWA() {
             <SheetFooter className="flex flex-col gap-4">
               <button 
                 onClick={handleInstallClick} 
-                className="w-full h-16 bg-black text-white rounded-full font-semibold text-xl hover:bg-gray-800 transition-colors shadow-2xl"
+                className="w-full h-16 bg-black text-white rounded-[24px] font-semibold text-xl hover:bg-gray-800 transition-colors shadow-2xl"
               >
                 Install Now
               </button>
               <button 
                 onClick={handleDismiss} 
-                className="w-full h-16 bg-white text-gray-500 rounded-full font-semibold text-lg hover:text-black transition-colors"
+                className="w-full h-16 bg-white text-gray-500 rounded-[24px] font-semibold text-lg hover:text-black transition-colors"
               >
                 Maybe Later
               </button>

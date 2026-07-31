@@ -19,7 +19,7 @@ export const Footer = () => {
       <div className="flex justify-center w-full">
         <button 
           onClick={handleInstallClick}
-          className="cursor-pointer flex items-center gap-2 bg-black text-white px-6 py-3 rounded-full hover:bg-black/90 transition-colors"
+          className="cursor-pointer flex items-center gap-2 bg-black text-white px-6 py-3 rounded-[24px] hover:bg-black/90 transition-colors"
         >
           <Download className="w-4 h-4" />
           <span className="text-[15px] font-semibold">Install App</span>
