@@ -136,7 +136,9 @@ export default function InstallPWA() {
           <div className="fixed bottom-6 left-4 right-4 z-40 animate-in slide-in-from-bottom-5 duration-500 max-w-md mx-auto">
             <div className="bg-black rounded-full shadow-2xl p-2 pl-6 flex items-center justify-between gap-4">
               <div className="flex items-center gap-4">
-                <img src="/icon-192.png" alt="GrabIt2Me Logo" className="h-8 w-8 rounded-md" />
+                <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shrink-0">
+                  <img src="/icon-192.png" alt="GrabIt2Me Logo" className="h-7 w-7 object-contain" />
+                </div>
                 <div className="flex flex-col">
                   <span className="text-lg font-[599] text-white leading-tight">Install App</span>
                 </div>
@@ -163,7 +165,9 @@ export default function InstallPWA() {
           <SheetContent side="bottom" className="h-auto bg-white border-0 p-6 md:p-10 rounded-t-[40px] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.1)]">
             <div className="max-w-md mx-auto">
               <SheetHeader className="text-center mb-10 flex flex-col items-center">
-                <img src="/icon-192.png" alt="GrabIt2Me Logo" className="w-24 h-24 rounded-[24px] mb-6 shadow-2xl object-cover" />
+                <div className="w-24 h-24 rounded-[24px] bg-white flex items-center justify-center shrink-0 mb-6 shadow-2xl border border-gray-100">
+                  <img src="/icon-192.png" alt="GrabIt2Me Logo" className="w-16 h-16 object-contain" />
+                </div>
                 <SheetTitle className="text-3xl md:text-4xl font-[599] text-black tracking-tighter">Install GrabIt2Me</SheetTitle>
                 <SheetDescription className="text-base md:text-lg font-medium text-gray-500 mt-2">
                   Get the best experience directly on your home screen.
@@ -216,7 +220,9 @@ export default function InstallPWA() {
         <div className="fixed bottom-6 left-4 right-4 z-40 animate-in slide-in-from-bottom-5 duration-500 max-w-md mx-auto">
           <div className="bg-black rounded-full shadow-2xl p-2 pl-6 flex items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <img src="/icon-192.png" alt="GrabIt2Me Logo" className="h-8 w-8 rounded-md" />
+              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shrink-0">
+                <img src="/icon-192.png" alt="GrabIt2Me Logo" className="h-7 w-7 object-contain" />
+              </div>
               <div className="flex flex-col">
                 <span className="text-lg font-[599] text-white leading-tight">Install App</span>
               </div>
@@ -243,7 +249,9 @@ export default function InstallPWA() {
         <SheetContent side="bottom" className="h-auto bg-white border-0 p-6 md:p-10 rounded-t-[40px] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.1)]">
           <div className="max-w-md mx-auto">
             <SheetHeader className="text-center mb-10 flex flex-col items-center">
-              <img src="/icon-192.png" alt="GrabIt2Me Logo" className="w-24 h-24 rounded-[24px] mb-6 shadow-2xl object-cover" />
+              <div className="w-24 h-24 rounded-[24px] bg-white flex items-center justify-center shrink-0 mb-6 shadow-2xl border border-gray-100">
+                <img src="/icon-192.png" alt="GrabIt2Me Logo" className="w-16 h-16 object-contain" />
+              </div>
               <SheetTitle className="text-3xl md:text-4xl font-[599] text-black tracking-tighter">Install GrabIt2Me</SheetTitle>
               <SheetDescription className="text-base md:text-lg font-medium text-gray-500 mt-2">
                 Lightning fast access directly from your home screen.
