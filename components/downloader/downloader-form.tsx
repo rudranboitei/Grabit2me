@@ -2,17 +2,11 @@
 
 import * as React from 'react';
 import { Loader2, Link2, X, Zap } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Card, CardContent } from '@/components/ui/card';
 
 interface DownloaderFormProps {
   url: string;
   setUrl: (url: string) => void;
   loading: boolean;
-  error: string;
-  setError: (error: string) => void;
   onSubmit: () => void;
   onReset: () => void;
   hasMedia: boolean;
@@ -22,83 +16,75 @@ export function DownloaderForm({
   url,
   setUrl,
   loading,
-  error,
-  setError,
   onSubmit,
   onReset,
   hasMedia,
 }: DownloaderFormProps) {
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      onSubmit();
-    }
-  };
-
   const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUrl(e.target.value);
-    setError('');
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-4">
+    <div id="download-form" className="w-full max-w-2xl mx-auto space-y-4">
       {/* Search / Input Button Group inside a subtle shadow wrapper */}
-      <div className="relative flex items-stretch w-full rounded-full shadow-subtle border border-cool-gray bg-white overflow-hidden p-1.5 focus-within:ring-4 focus-within:ring-ember-glow/10 focus-within:border-ember-glow transition-all duration-200">
+      <form 
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (!loading && url.trim()) {
+            onSubmit();
+          }
+        }}
+        className="relative flex items-stretch w-full rounded-full shadow-2xl border border-gray-200 bg-white overflow-hidden p-1.5 focus-within:ring-4 focus-within:ring-black/10 focus-within:border-black transition-all duration-200"
+      >
         <div className="relative flex-1 flex items-center">
-          <Link2 className="absolute left-4.5 h-4 w-4 text-steel-gray" />
+          <Link2 className="absolute left-5 h-5 w-5 text-gray-500" />
           <input
             type="url"
             placeholder="Paste Instagram or X/Twitter link here..."
             value={url}
             onChange={handleUrlChange}
-            onKeyDown={handleKeyDown}
-            className="pl-11 pr-10 h-11 w-full bg-white text-jet-black placeholder-steel-gray focus:outline-none text-sm font-inter"
+            className="pl-12 pr-12 h-14 w-full bg-white text-black placeholder-gray-400 focus:outline-none text-base md:text-lg font-medium"
             disabled={loading}
           />
           {(url || hasMedia) && (
             <button
+              type="button"
               onClick={onReset}
-              className="absolute right-2.5 h-7 w-7 flex items-center justify-center rounded-full text-steel-gray hover:text-jet-black hover:bg-ash-gray transition-colors"
+              className="absolute right-3 h-8 w-8 flex items-center justify-center rounded-full text-gray-400 hover:text-black hover:bg-gray-100 transition-colors"
               title="Clear"
             >
-              <X className="h-4 w-4" />
+              <X className="h-5 w-5" />
             </button>
           )}
         </div>
 
         <button
-          onClick={onSubmit}
+          type="submit"
           disabled={loading || !url.trim()}
-          className="h-11 px-6 bg-ember-glow hover:bg-ember-glow/95 disabled:bg-steel-gray text-white font-medium text-xs uppercase tracking-wider rounded-full flex items-center justify-center shrink-0 transition-all shadow-subtle active:scale-98"
+          className="h-14 px-8 bg-black hover:bg-gray-800 disabled:bg-gray-300 text-white font-bold text-sm uppercase tracking-wide rounded-full flex items-center justify-center shrink-0 transition-all shadow-md active:scale-95"
         >
           {loading ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
+            <Loader2 className="h-5 w-5 animate-spin" />
           ) : (
             <>
-              <Zap className="h-3.5 w-3.5 mr-1.5 fill-current" />
+              <Zap className="h-4 w-4 mr-2 fill-current" />
               <span>Fetch</span>
             </>
           )}
         </button>
-      </div>
+      </form>
 
       {/* Loading state indicator */}
       {loading && !hasMedia && (
-        <div className="rounded-xl border border-cloud-gray bg-ash-gray/60 p-6 flex flex-col items-center justify-center space-y-3 shadow-subtle">
-          <Loader2 className="h-6 w-6 animate-spin text-ember-glow" />
+        <div className="rounded-2xl border border-gray-200 bg-gray-50 p-8 flex flex-col items-center justify-center space-y-4 shadow-sm">
+          <Loader2 className="h-8 w-8 animate-spin text-black" />
           <div className="text-center">
-            <p className="text-sm font-semibold text-jet-black font-inter">Retrieving media files...</p>
-            <p className="text-xs text-steel-gray font-inter mt-1">This can take up to a minute for high resolution files.</p>
+            <p className="text-base font-bold text-black">Retrieving media files...</p>
+            <p className="text-sm text-gray-500 mt-2 font-medium">This can take up to a minute for high resolution files.</p>
           </div>
         </div>
       )}
 
-      {/* Error alert */}
-      {error && (
-        <Alert variant="destructive" className="border-warning-red/20 bg-warning-red/5 rounded-xl shadow-subtle">
-          <AlertTitle className="font-semibold text-sm text-warning-red">Failed to retrieve media</AlertTitle>
-          <AlertDescription className="text-xs text-warning-red/90">{error}</AlertDescription>
-        </Alert>
-      )}
     </div>
   );
 }

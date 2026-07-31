@@ -2,14 +2,10 @@ import PWARegister from "@/components/PWARegister";
 import { Footer } from "@/components/section/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Inter } from 'next/font/google';
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Header } from "@/components/section/Header";
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
-
+import { Toaster } from "sonner";
 
 export const viewport = {
   width: "device-width",
@@ -109,7 +105,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans antialiased", inter.variable)}>
+    <html lang="en" className={cn("font-sans antialiased")}>
       <head>
         <meta name="application-name" content="GrabIt" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -121,12 +117,25 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-tap-highlight" content="no" />
       </head>
-      <body className={inter.variable}>
-        <Header />
+      <body className="font-sans font-[599]">
         <PWARegister />
         <Analytics />
         <TooltipProvider>{children}</TooltipProvider>
         <Footer />
+        <Toaster 
+          position="bottom-center" 
+          toastOptions={{
+            style: {
+              background: 'black',
+              color: 'white',
+              border: 'none',
+              borderRadius: '9999px',
+              padding: '16px 24px',
+              fontSize: '16px',
+              fontWeight: 599
+            }
+          }} 
+        />
       </body>
     </html>
   );

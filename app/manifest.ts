@@ -37,5 +37,14 @@ export default function manifest(): MetadataRoute.Manifest {
       },
     ],
     categories: ['utilities', 'productivity', 'social'],
-  }
+    share_target: {
+      action: '/',
+      method: 'GET',
+      params: {
+        title: 'title',
+        text: 'text',
+        url: 'url',
+      },
+    },
+  } as any;
 }

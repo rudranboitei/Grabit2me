@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { toast } from 'sonner';
 import { Download, Loader2, Play, Volume2, VolumeX, ExternalLink } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -37,7 +38,6 @@ interface MediaPreviewProps {
   downloadingFormat: string | null;
   downloadStatus: 'idle' | 'fetching' | 'starting';
   handleDownload: (customUrl?: string, isExternal?: boolean, formatId?: string) => Promise<void>;
-  setError: (error: string) => void;
 }
 
 export function MediaPreview({
@@ -46,20 +46,19 @@ export function MediaPreview({
   downloadingFormat,
   downloadStatus,
   handleDownload,
-  setError,
 }: MediaPreviewProps) {
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-6">
-      <Card className="border border-cloud-gray overflow-hidden bg-white shadow-sm rounded-xl">
+    <div id="media-preview" className="w-full max-w-2xl mx-auto space-y-6">
+      <div className="border border-gray-200 overflow-hidden bg-white shadow-2xl rounded-[32px]">
         {/* Aspect Ratio Controlled Media Preview Container */}
-        <div className="relative w-full bg-ink-black flex items-center justify-center max-h-[60vh] overflow-hidden border-b border-cloud-gray">
+        <div className="relative w-full bg-black flex items-center justify-center max-h-[60vh] overflow-hidden border-b border-gray-200">
           {media.type === 'video' ? (
             <video
               controls
               controlsList="nodownload"
               className="w-full h-auto max-h-[60vh] object-contain"
               src={media.mediaUrl}
-              onError={() => setError('Failed to load video preview. You can still try downloading it.')}
+              onError={() => toast.error('Failed to load video preview. You can still try downloading it.')}
             >
               Your browser does not support the video tag.
             </video>
@@ -68,61 +67,57 @@ export function MediaPreview({
               src={media.mediaUrl}
               alt={media.title || 'Media Preview'}
               className="w-full h-auto max-h-[60vh] object-contain"
-              onError={() => setError('Failed to load image preview. You can still try downloading it.')}
+              onError={() => toast.error('Failed to load image preview. You can still try downloading it.')}
             />
           )}
         </div>
 
         {/* Media Details */}
         {media.title && (
-          <CardHeader className="bg-ash-gray/40 border-b border-cloud-gray py-4 px-4 sm:px-6">
-            <CardTitle className="text-sm font-semibold leading-snug line-clamp-2 text-jet-black font-inter">
+          <div className="bg-gray-50 border-b border-gray-200 py-5 px-5 sm:px-8">
+            <h3 className="text-base font-bold leading-snug line-clamp-2 text-black">
               {media.title}
-            </CardTitle>
+            </h3>
             {media.description && (
-              <p className="text-xs text-steel-gray line-clamp-2 mt-1 font-inter">
+              <p className="text-sm font-medium text-gray-500 line-clamp-2 mt-1.5">
                 {media.description}
               </p>
             )}
-          </CardHeader>
+          </div>
         )}
 
         {/* Download Buttons Section */}
-        <CardContent className="p-4 sm:p-6 space-y-4">
+        <div className="p-5 sm:p-8 space-y-5">
           {media.availableFormats && media.availableFormats.video.length > 0 ? (
-            <div className="space-y-4">
-              <div className="flex items-center gap-2 text-sm font-semibold text-jet-black font-inter">
-                <Download className="h-4 w-4 text-ember-glow" />
+            <div className="space-y-5">
+              <div className="flex items-center gap-2 text-base font-bold text-black">
+                <Download className="h-5 w-5 text-black" />
                 <span>{media.externalDownload ? 'Download Options' : 'Select Video Quality'}</span>
               </div>
 
               {media.externalDownload && (
-                <p className="text-xs text-steel-gray bg-ash-gray/60 p-3.5 border border-cloud-gray rounded-2xl font-inter">
+                <p className="text-sm font-medium text-gray-600 bg-gray-100 p-4 rounded-2xl">
                   💡 Click a download button below to load the video details on the hosting service, where you can save it.
                 </p>
               )}
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {media.availableFormats.video.map((format, index) => {
                   const formatId = `video-${index}-${format.quality}`;
                   const isThisDownloading = downloadingFormat === formatId;
 
                   return (
-                    <Button
+                    <button
                       key={index}
                       onClick={() => handleDownload(format.url, format.isExternal, formatId)}
                       disabled={downloading}
-                      className={`h-11 text-xs flex items-center justify-between font-medium w-full rounded-full shadow-subtle border ${
-                        format.isExternal 
-                          ? "bg-white border-cloud-gray text-jet-black hover:bg-ash-gray hover:border-cool-gray" 
-                          : "bg-white border-cloud-gray text-jet-black hover:bg-ash-gray hover:border-cool-gray"
-                      }`}
+                      className="h-12 text-sm flex items-center justify-between font-bold w-full rounded-full shadow-sm border bg-white border-gray-200 text-black hover:bg-gray-50 hover:border-gray-300 transition-colors px-4 disabled:opacity-50"
                     >
-                      <div className="flex items-center gap-2 truncate">
+                      <div className="flex items-center gap-2.5 truncate">
                         {isThisDownloading ? (
-                          <Loader2 className="h-3.5 w-3.5 animate-spin shrink-0 text-ember-glow" />
+                          <Loader2 className="h-4 w-4 animate-spin shrink-0 text-black" />
                         ) : (
-                          <Download className="h-3.5 w-3.5 shrink-0 text-steel-gray" />
+                          <Download className="h-4 w-4 shrink-0 text-gray-400" />
                         )}
                         <span className="truncate">
                           {isThisDownloading
@@ -131,57 +126,57 @@ export function MediaPreview({
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                      <div className="flex items-center gap-2 shrink-0 ml-2">
                         {format.isExternal && (
-                          <ExternalLink className="h-3 w-3 text-steel-gray" />
+                          <ExternalLink className="h-3.5 w-3.5 text-gray-400" />
                         )}
                         {!format.isExternal && format.hasAudio && (
-                          <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-ember-glow/10 text-ember-glow">
-                            <Volume2 className="h-2.5 w-2.5 mr-0.5" /> HD
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold bg-gray-100 text-black">
+                            <Volume2 className="h-3 w-3 mr-1" /> HD
                           </span>
                         )}
                         {!format.isExternal && !format.hasAudio && (
-                          <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-warning-red/10 text-warning-red">
-                            <VolumeX className="h-2.5 w-2.5 mr-0.5" /> Muted
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold bg-red-50 text-red-600">
+                            <VolumeX className="h-3 w-3 mr-1" /> Muted
                           </span>
                         )}
                       </div>
-                    </Button>
+                    </button>
                   );
                 })}
               </div>
 
               {/* Audio formats */}
               {media.availableFormats.audio && media.availableFormats.audio.length > 0 && (
-                <div className="space-y-3 pt-4 border-t border-cloud-gray">
-                  <div className="text-xs font-bold text-jet-black uppercase tracking-wider font-inter">
+                <div className="space-y-4 pt-5 border-t border-gray-200">
+                  <div className="text-sm font-bold text-black uppercase tracking-wider">
                     Audio Tracks Only
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {media.availableFormats.audio.map((format, index) => {
                       const formatId = `audio-${index}-${format.quality}`;
                       const isThisDownloading = downloadingFormat === formatId;
 
                       return (
-                        <Button
+                        <button
                           key={index}
                           onClick={() => handleDownload(format.url, false, formatId)}
                           disabled={downloading}
-                          className="h-11 text-xs flex items-center justify-between bg-ash-gray hover:bg-cloud-gray/40 border border-cloud-gray text-jet-black font-medium w-full rounded-full shadow-subtle"
+                          className="h-12 text-sm flex items-center justify-between bg-gray-50 hover:bg-gray-100 border border-gray-200 text-black font-bold w-full rounded-full shadow-sm px-4 transition-colors disabled:opacity-50"
                         >
-                          <div className="flex items-center gap-2 truncate">
+                          <div className="flex items-center gap-2.5 truncate">
                             {isThisDownloading ? (
-                              <Loader2 className="h-3.5 w-3.5 animate-spin shrink-0 text-ember-glow" />
+                              <Loader2 className="h-4 w-4 animate-spin shrink-0 text-black" />
                             ) : (
-                              <Download className="h-3.5 w-3.5 shrink-0 text-steel-gray" />
+                              <Download className="h-4 w-4 shrink-0 text-gray-400" />
                             )}
-                            <span className="truncate font-inter">
+                            <span className="truncate">
                               {isThisDownloading
                                 ? (downloadStatus === 'starting' ? 'Starting...' : 'Downloading...')
                                 : `Audio - ${format.quality}`}
                             </span>
                           </div>
-                        </Button>
+                        </button>
                       );
                     })}
                   </div>
@@ -190,27 +185,26 @@ export function MediaPreview({
             </div>
           ) : (
             /* Single Direct Download Button if formats not available */
-            <Button
+            <button
               onClick={() => handleDownload()}
               disabled={downloading}
-              size="lg"
-              className="w-full h-11 text-sm font-semibold bg-ember-glow hover:bg-ember-glow/95 text-white flex items-center justify-center gap-2 rounded-full shadow-subtle font-inter border-0"
+              className="w-full h-14 text-base font-bold bg-black hover:bg-gray-800 text-white flex items-center justify-center gap-2.5 rounded-full shadow-md border-0 transition-colors disabled:opacity-50"
             >
               {downloading ? (
                 <>
-                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <Loader2 className="h-5 w-5 animate-spin" />
                   <span>{downloadStatus === 'starting' ? 'Starting...' : 'Downloading...'}</span>
                 </>
               ) : (
                 <>
-                  <Download className="h-4 w-4" />
+                  <Download className="h-5 w-5" />
                   <span>Download {media.type === 'video' ? 'Video' : 'Image'}</span>
                 </>
               )}
-            </Button>
+            </button>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }

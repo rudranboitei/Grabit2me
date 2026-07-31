@@ -35,33 +35,19 @@ const features = [
 
 export function FeaturesSection() {
   return (
-    <section className="w-full max-w-5xl mx-auto pt-16 pb-12">
-      {/* Section header */}
-      <div className="text-center mb-12 space-y-3">
-        <p className="text-[10px] font-bold uppercase tracking-wider text-steel-gray font-inter">
-          Why GrabIt
+    <section className="w-full max-w-4xl mx-auto pt-24 pb-32 space-y-24 px-4">
+      <div className="flex flex-col items-center justify-center space-y-24">
+        <p className="text-[28px] md:text-[36px] font-semibold tracking-[-0.01em] leading-[1.1] text-center text-black">
+          GrabIt2Me is an all-in-one downloader that brings together your favorite social media platforms into a single tool.
         </p>
-        <h2 className="text-3xl font-heading font-bold tracking-tight text-ink-black">
-          Everything you need. Nothing you don't.
-        </h2>
-      </div>
 
-      {/* Feature grid - Dub.co cell layout */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px border border-cloud-gray bg-cloud-gray rounded-xl overflow-hidden shadow-subtle">
-        {features.map((feature) => (
-          <div
-            key={feature.title}
-            className="bg-white p-6 sm:p-8 flex flex-col gap-4 hover:bg-ash-gray/60 transition-colors group"
-          >
-            <div className="w-9 h-9 rounded-lg flex items-center justify-center border border-cloud-gray bg-ash-gray text-jet-black group-hover:border-ember-glow/30 group-hover:text-ember-glow transition-colors">
-              <feature.icon className="w-4 h-4" />
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-jet-black mb-1.5 font-inter">{feature.title}</h3>
-              <p className="text-xs text-steel-gray leading-relaxed font-inter">{feature.description}</p>
-            </div>
-          </div>
-        ))}
+        <p className="text-[28px] md:text-[36px] font-semibold tracking-[-0.01em] leading-[1.1] text-center text-black">
+          Seamlessly integrated with Instagram and X, GrabIt2Me fetches videos, reels, and photos effortlessly in seconds.
+        </p>
+
+        <p className="text-[28px] md:text-[36px] font-semibold tracking-[-0.01em] leading-[1.1] text-center text-black">
+          Designed with simplicity in mind, the tool aims to create an easy to use experience, allowing you to focus on saving the content that truly matters.
+        </p>
       </div>
     </section>
   );
