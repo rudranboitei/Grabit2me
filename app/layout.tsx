@@ -120,8 +120,8 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="GrabIt" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="theme-color" content="#ffffff" />
-        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="theme-color" content="#69b3e8" />
+        <meta name="msapplication-TileColor" content="#69b3e8" />
         <meta name="msapplication-tap-highlight" content="no" />
         <SplashScreens />
       </head>

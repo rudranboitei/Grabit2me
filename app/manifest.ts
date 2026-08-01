@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Download videos and images from Instagram, X, Threads, LinkedIn, Snapchat, and YouTube instantly. Fast, free, and easy to use.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff',
-    theme_color: '#ffffff',
+    background_color: '#69b3e8',
+    theme_color: '#69b3e8',
     orientation: 'portrait-primary',
     icons: [
       {
