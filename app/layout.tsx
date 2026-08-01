@@ -125,7 +125,7 @@ export default function RootLayout({
         <meta name="msapplication-tap-highlight" content="no" />
         <SplashScreens />
       </head>
-      <body className="font-sans font-medium text-foreground bg-background">
+      <body className="font-sans font-medium text-foreground" style={{ background: 'linear-gradient(#69b3e8 -1.8018%, #80c1ef 86%, #dee2ee 98%, #ffdbdb 100%)' }}>
         <PWARegister />
         <Analytics />
         <TooltipProvider>{children}</TooltipProvider>
