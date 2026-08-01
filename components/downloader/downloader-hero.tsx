@@ -1,32 +1,7 @@
 'use client';
 
-import { Download, Zap, Video, LucideIcon, DownloadCloud } from 'lucide-react';
+import { Download } from 'lucide-react';
 import Image from 'next/image';
-
-interface InlineIconProps {
-  icon: LucideIcon;
-  variant?: 'solid' | 'transparent' | 'filled';
-}
-
-function InlineIcon({ icon: Icon, variant = 'transparent' }: InlineIconProps) {
-  if (variant === 'solid') {
-    return (
-      <span className="inline-flex items-center justify-center bg-black text-white p-[clamp(0.25rem,1vw,0.5rem)] rounded-[clamp(0.75rem,2vw,1.25rem)] shrink-0">
-        <Icon className="w-[clamp(1.5rem,4vw,2.75rem)] h-[clamp(1.5rem,4vw,2.75rem)]" strokeWidth={2.5} />
-      </span>
-    );
-  }
-
-  return (
-    <span className="inline-flex items-center justify-center text-black shrink-0">
-      <Icon 
-        className="w-[clamp(2rem,5vw,3.5rem)] h-[clamp(2rem,5vw,3.5rem)]" 
-        strokeWidth={variant === 'transparent' ? 2.5 : 0} 
-        fill={variant === 'filled' ? 'currentColor' : 'none'} 
-      />
-    </span>
-  );
-}
 
 export function DownloaderHero() {
   const handleInstallClick = (e: React.MouseEvent) => {
@@ -37,34 +12,37 @@ export function DownloaderHero() {
   return (
     <div className="flex flex-col items-center justify-center text-center space-y-6 mb-16 mt-8">
       {/* Small top title */}
-      <div className="text-xl md:text-2xl font-bold tracking-tight text-black">
+      <div className="text-xl md:text-2xl font-normal tracking-tight text-black flex items-center gap-2">
+        <div className="w-8 h-8 bg-black rounded-full text-white flex items-center justify-center text-sm font-bold">
+          G
+        </div>
         GrabIt2Me
       </div>
 
-      {/* Main massive headline */}
-      <h1 className="text-[clamp(1.75rem,4.5vw,3.5rem)] font-bold tracking-tighter text-black leading-[1.1] max-w-5xl flex flex-wrap items-center justify-center gap-x-[clamp(0.375rem,1.5vw,0.75rem)] gap-y-2">
-        <span>The ultimate</span>
-        <InlineIcon icon={Zap} variant="filled" />
-        <span>downloader</span>
-        <div className="w-full h-0"></div>
-        <span>to grab high-quality</span>
-        <InlineIcon icon={Video} variant="transparent" />
-        <span>media</span>
-        <div className="w-full h-0 hidden md:block"></div>
-        <span>from your favorite</span>
-        <InlineIcon icon={DownloadCloud} variant="transparent" />
-        <span>social apps</span>
+      {/* Main massive headline as requested: Bricolage Grotesque, 400 weight, 68px size, 71px line height */}
+      <h1 className="text-[48px] md:text-[68px] font-normal tracking-tight text-black leading-tight md:leading-[71px] max-w-4xl text-center mx-auto mt-4 mb-4">
+        Need a cool tool? <br/> I've got you covered
       </h1>
+      
+      <p className="text-[22px] text-black font-normal mt-2 max-w-2xl mx-auto">
+        Downloading and saving media <br/> for creators and founders
+      </p>
 
-      {/* Action button */}
-      <div className="pt-8 flex flex-col items-center gap-12">
+      {/* Action button matching the "Book a call" style */}
+      <div className="pt-6 flex flex-col items-center gap-4">
         <button 
           onClick={handleInstallClick}
-          className="cursor-pointer inline-flex items-center gap-2 bg-black text-white px-8 py-4 rounded-[24px] font-semibold text-xl hover:bg-black/90 transition-colors"
+          className="relative overflow-hidden cursor-pointer inline-flex items-center gap-2 bg-[#ffc73b] text-black px-8 py-4 rounded-[40px] font-semibold text-lg hover:scale-105 transition-transform shadow-[inset_0px_-4px_4px_0px_rgb(208,163,52)] border-2 border-[rgba(19,20,21,0.06)]"
         >
-          <Download className="w-6 h-6" />
           Install App
+          {/* Shine effect */}
+          <div className="absolute inset-0 w-[200%] h-full bg-[#fbfeff] opacity-20 -rotate-45 translate-x-[-150%] hover:translate-x-[150%] transition-transform duration-[1500ms]" />
         </button>
+        
+        <div className="flex items-center gap-2 text-[15px] font-medium text-black">
+          <div className="w-3 h-3 rounded-full bg-[#ffc73b] shadow-[inset_0px_-2px_2px_0px_rgb(208,163,52)]" />
+          available
+        </div>
       </div>
     </div>
   );

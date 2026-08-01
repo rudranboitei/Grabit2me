@@ -148,25 +148,25 @@ export default function InstallPWA() {
         {/* Reminder Banner for iOS */}
         {showReminderBanner && (
           <div className="fixed bottom-6 left-4 right-4 z-40 animate-in slide-in-from-bottom-5 duration-500 max-w-md mx-auto">
-            <div className="bg-black rounded-full shadow-2xl p-2 pl-6 flex items-center justify-between gap-4">
+            <div className="bg-white rounded-[24px] shadow-2xl p-2 pl-6 flex items-center justify-between gap-4 border border-gray-100">
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center shrink-0 border border-gray-100">
                   <img src="/icon-192.png" alt="GrabIt2Me Logo" className="h-7 w-7 object-contain" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-lg font-semibold text-white leading-tight">Install App</span>
+                  <span className="text-lg font-semibold text-black leading-tight">Install App</span>
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 <button 
                   onClick={handleReminderInstall}
-                  className="px-6 py-3 bg-white text-black rounded-[24px] font-semibold text-base hover:bg-gray-100 transition-colors"
+                  className="px-6 py-3 bg-black text-white rounded-[24px] font-semibold text-base hover:bg-gray-800 transition-colors"
                 >
                   Get
                 </button>
                 <button
                   onClick={handleReminderDismiss}
-                  className="w-10 h-10 flex items-center justify-center rounded-[24px] text-gray-400 hover:text-white transition-colors"
+                  className="w-10 h-10 flex items-center justify-center rounded-[24px] text-gray-400 hover:text-black transition-colors"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -232,25 +232,25 @@ export default function InstallPWA() {
       {/* Reminder Banner for Android/Desktop */}
       {showReminderBanner && (
         <div className="fixed bottom-6 left-4 right-4 z-40 animate-in slide-in-from-bottom-5 duration-500 max-w-md mx-auto">
-          <div className="bg-black rounded-full shadow-2xl p-2 pl-6 flex items-center justify-between gap-4">
+          <div className="bg-white rounded-[24px] shadow-2xl p-2 pl-6 flex items-center justify-between gap-4 border border-gray-100">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center shrink-0 border border-gray-100">
                 <img src="/icon-192.png" alt="GrabIt2Me Logo" className="h-7 w-7 object-contain" />
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-semibold text-white leading-tight">Install App</span>
+                <span className="text-lg font-semibold text-black leading-tight">Install App</span>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <button 
                 onClick={handleReminderInstall}
-                className="px-6 py-3 bg-white text-black rounded-[24px] font-semibold text-base hover:bg-gray-100 transition-colors"
+                className="px-6 py-3 bg-black text-white rounded-[24px] font-semibold text-base hover:bg-gray-800 transition-colors"
               >
                 Get
               </button>
               <button
                 onClick={handleReminderDismiss}
-                className="w-10 h-10 flex items-center justify-center rounded-[24px] text-gray-400 hover:text-white transition-colors"
+                className="w-10 h-10 flex items-center justify-center rounded-[24px] text-gray-400 hover:text-black transition-colors"
               >
                 <X className="h-5 w-5" />
               </button>

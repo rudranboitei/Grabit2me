@@ -3,10 +3,16 @@ import { SplashScreens } from "@/components/SplashScreens";
 import { Footer } from "@/components/section/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
+import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "sonner";
+
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-bricolage",
+});
 
 export const viewport = {
   width: "device-width",
@@ -106,7 +112,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans antialiased")}>
+    <html lang="en" className={cn(bricolage.variable, "font-sans antialiased")}>
       <head>
         <meta name="application-name" content="GrabIt" />
         <meta name="apple-mobile-web-app-capable" content="yes" />

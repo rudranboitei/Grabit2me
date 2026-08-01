@@ -5,10 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-heading: ".SFNSDisplay-Semibold", SFProDisplay-Semibold, SFUIDisplay-Semibold, ".SFUIDisplay-Semibold", "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-sans: ".SFNSDisplay-Semibold", SFProDisplay-Semibold, SFUIDisplay-Semibold, ".SFUIDisplay-Semibold", "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-satoshi: ".SFNSDisplay-Semibold", SFProDisplay-Semibold, SFUIDisplay-Semibold, ".SFUIDisplay-Semibold", "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-inter: ".SFNSDisplay-Semibold", SFProDisplay-Semibold, SFUIDisplay-Semibold, ".SFUIDisplay-Semibold", "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: var(--font-bricolage), sans-serif;
+  --font-sans: var(--font-bricolage), sans-serif;
+  --font-satoshi: var(--font-bricolage), sans-serif;
+  --font-inter: var(--font-bricolage), sans-serif;
   --font-geistmono: var(--font-sans);
 
   /* Theme specific colors */

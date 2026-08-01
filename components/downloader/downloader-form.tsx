@@ -26,61 +26,60 @@ export function DownloaderForm({
 
   return (
     <div id="download-form" className="w-full max-w-2xl mx-auto space-y-4">
-      {/* Search / Input Button Group inside a subtle shadow wrapper */}
-      <form 
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (!loading && url.trim()) {
-            onSubmit();
-          }
-        }}
-        className="relative flex items-stretch w-full rounded-full shadow-2xl border border-gray-200 bg-white overflow-hidden p-1.5 focus-within:ring-4 focus-within:ring-black/10 focus-within:border-black transition-all duration-200"
-      >
-        <div className="relative flex-1 flex items-center">
-          <Link2 className="absolute left-5 h-5 w-5 text-gray-500" />
-          <input
-            type="url"
-            placeholder="Paste Instagram or X/Twitter link here..."
-            value={url}
-            onChange={handleUrlChange}
-            className="pl-12 pr-12 h-14 w-full bg-white text-black placeholder-gray-400 focus:outline-none text-base md:text-lg font-medium"
-            disabled={loading}
-          />
-          {(url || hasMedia) && (
-            <button
-              type="button"
-              onClick={onReset}
-              className="absolute right-3 h-8 w-8 flex items-center justify-center rounded-full text-gray-400 hover:text-black hover:bg-gray-100 transition-colors"
-              title="Clear"
-            >
-              <X className="h-5 w-5" />
-            </button>
-          )}
-        </div>
-
-        <button
-          type="submit"
-          disabled={loading || !url.trim()}
-          className="h-14 px-8 bg-black hover:bg-gray-800 disabled:bg-gray-300 text-white font-bold text-sm uppercase tracking-wide rounded-full flex items-center justify-center shrink-0 transition-all shadow-md active:scale-95"
+      <div className="bg-[#fbfeff] rounded-[40px] shadow-[inset_0px_-4px_4px_0px_rgb(210,203,198)] border-2 border-[rgba(199,196,194,0.2)] p-4 relative overflow-hidden">
+        <form 
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (!loading && url.trim()) {
+              onSubmit();
+            }
+          }}
+          className="relative flex flex-col md:flex-row items-stretch w-full gap-3"
         >
-          {loading ? (
-            <Loader2 className="h-5 w-5 animate-spin" />
-          ) : (
-            <>
-              <Zap className="h-4 w-4 mr-2 fill-current" />
-              <span>Fetch</span>
-            </>
-          )}
-        </button>
-      </form>
+          <div className="relative flex-1 flex items-center bg-gray-50/50 rounded-[40px] p-2 border-2 border-dotted border-[rgba(199,196,194,0.5)]">
+            <Link2 className="absolute left-4 h-5 w-5 text-black/50" />
+            <input
+              type="url"
+              placeholder="Paste Instagram or X link..."
+              value={url}
+              onChange={handleUrlChange}
+              className="pl-10 pr-10 h-12 w-full bg-transparent text-black placeholder-black/40 focus:outline-none text-base md:text-lg font-normal"
+              disabled={loading}
+            />
+            {(url || hasMedia) && (
+              <button
+                type="button"
+                onClick={onReset}
+                className="absolute right-3 h-8 w-8 flex items-center justify-center rounded-full text-black/40 hover:text-black hover:bg-black/5 transition-colors"
+                title="Clear"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading || !url.trim()}
+            className="h-16 md:h-auto px-8 bg-[#ffc73b] hover:scale-105 shadow-[inset_0px_-4px_4px_0px_rgb(208,163,52)] border-2 border-[rgba(19,20,21,0.06)] disabled:bg-gray-300 disabled:shadow-none disabled:border-transparent text-black font-semibold text-lg rounded-[40px] flex items-center justify-center shrink-0 transition-transform active:scale-95"
+          >
+            {loading ? (
+              <Loader2 className="h-5 w-5 animate-spin" />
+            ) : (
+              <>
+                <span>Fetch</span>
+              </>
+            )}
+          </button>
+        </form>
+      </div>
 
       {/* Loading state indicator */}
       {loading && !hasMedia && (
-        <div className="rounded-2xl border border-gray-200 bg-gray-50 p-8 flex flex-col items-center justify-center space-y-4 shadow-sm">
+        <div className="bg-[#fbfeff] rounded-[40px] shadow-[inset_0px_-4px_4px_0px_rgb(210,203,198)] border-2 border-[rgba(199,196,194,0.2)] p-8 flex flex-col items-center justify-center space-y-4">
           <Loader2 className="h-8 w-8 animate-spin text-black" />
           <div className="text-center">
-            <p className="text-base font-bold text-black">Retrieving media files...</p>
-            <p className="text-sm text-gray-500 mt-2 font-medium">This can take up to a minute for high resolution files.</p>
+            <p className="text-lg font-normal text-black">Retrieving media...</p>
           </div>
         </div>
       )}

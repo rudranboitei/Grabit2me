@@ -49,7 +49,7 @@ export function MediaPreview({
 }: MediaPreviewProps) {
   return (
     <div id="media-preview" className="w-full max-w-2xl mx-auto space-y-6">
-      <div className="border border-gray-200 overflow-hidden bg-white shadow-2xl rounded-[32px]">
+      <div className="bg-[#fbfeff] rounded-[40px] shadow-[inset_0px_-4px_4px_0px_rgb(210,203,198)] border-2 border-[rgba(199,196,194,0.2)] overflow-hidden">
         {/* Aspect Ratio Controlled Media Preview Container */}
         <div className="relative w-full bg-black flex items-center justify-center max-h-[60vh] overflow-hidden border-b border-gray-200">
           {media.type === 'video' ? (
@@ -74,12 +74,12 @@ export function MediaPreview({
 
         {/* Media Details */}
         {media.title && (
-          <div className="bg-gray-50 border-b border-gray-200 py-5 px-5 sm:px-8">
+          <div className="border-b border-gray-200/50 py-5 px-5 sm:px-8">
             <h3 className="text-base font-bold leading-snug line-clamp-2 text-black">
               {media.title}
             </h3>
             {media.description && (
-              <p className="text-sm font-medium text-gray-500 line-clamp-2 mt-1.5">
+              <p className="text-sm font-medium text-black/60 line-clamp-2 mt-1.5">
                 {media.description}
               </p>
             )}
@@ -111,7 +111,7 @@ export function MediaPreview({
                       key={index}
                       onClick={() => handleDownload(format.url, format.isExternal, formatId)}
                       disabled={downloading}
-                      className="h-12 text-sm flex items-center justify-between font-bold w-full rounded-full shadow-sm border bg-white border-gray-200 text-black hover:bg-gray-50 hover:border-gray-300 transition-colors px-4 disabled:opacity-50"
+                      className="bg-[#fbfeff] rounded-[40px] shadow-[inset_0px_-4px_4px_0px_rgb(210,203,198)] border-2 border-[rgba(199,196,194,0.2)] h-12 text-sm flex items-center justify-between font-bold w-full text-black hover:scale-[1.02] transition-transform px-4 disabled:opacity-50"
                     >
                       <div className="flex items-center gap-2.5 truncate">
                         {isThisDownloading ? (
@@ -162,7 +162,7 @@ export function MediaPreview({
                           key={index}
                           onClick={() => handleDownload(format.url, false, formatId)}
                           disabled={downloading}
-                          className="h-12 text-sm flex items-center justify-between bg-gray-50 hover:bg-gray-100 border border-gray-200 text-black font-bold w-full rounded-full shadow-sm px-4 transition-colors disabled:opacity-50"
+                          className="bg-[#fbfeff] rounded-[40px] shadow-[inset_0px_-4px_4px_0px_rgb(210,203,198)] border-2 border-[rgba(199,196,194,0.2)] h-12 text-sm flex items-center justify-between font-bold w-full text-black hover:scale-[1.02] transition-transform px-4 disabled:opacity-50"
                         >
                           <div className="flex items-center gap-2.5 truncate">
                             {isThisDownloading ? (
@@ -188,7 +188,7 @@ export function MediaPreview({
             <button
               onClick={() => handleDownload()}
               disabled={downloading}
-              className="w-full h-14 text-base font-bold bg-black hover:bg-gray-800 text-white flex items-center justify-center gap-2.5 rounded-full shadow-md border-0 transition-colors disabled:opacity-50"
+              className="bg-[#ffc73b] shadow-[inset_0px_-4px_4px_0px_rgb(208,163,52)] border-2 border-[rgba(19,20,21,0.06)] w-full h-14 text-base font-semibold text-black flex items-center justify-center gap-2.5 rounded-[40px] hover:scale-[1.02] transition-transform disabled:opacity-50"
             >
               {downloading ? (
                 <>

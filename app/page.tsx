@@ -23,13 +23,13 @@ export default function Home() {
   } = useMediaDownloader();
 
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden bg-[#79bbed]">
       <InstallPWA />
 
-      {/* Minimalist Pure White Background */}
-      <div className="pointer-events-none fixed inset-0 z-0 bg-white" />
+      {/* Sky Blue Background */}
+      <div className="pointer-events-none fixed inset-0 z-0 bg-gradient-to-b from-[#79bbed] to-[#9ed1f0]" />
 
-      <main className="relative z-10 container max-w-5xl mx-auto px-4">
+      <main className="relative z-10 container max-w-5xl mx-auto px-4 font-sans">
         {/* Hero + Tool Section */}
         <section className="py-16 sm:py-24 space-y-8">
           <DownloaderHero />
@@ -54,7 +54,7 @@ export default function Home() {
           )}
         </section>
 
-        {/* Features Section — matching the large bold paragraphs from reference */}
+        {/* Features Section */}
         {!media && <FeaturesSection />}
       </main>
     </div>
