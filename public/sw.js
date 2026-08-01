@@ -1,10 +1,12 @@
-const CACHE_NAME = 'grabit-v5';
+const CACHE_NAME = 'grabit-v6';
 const STATIC_ASSETS = [
   '/',
   '/manifest.webmanifest',
   '/favicon.ico',
   '/icon-192.png',
   '/icon-512.png',
+  '/icon-192-maskable.png',
+  '/icon-512-maskable.png',
   '/apple-touch-icon.png',
 ];
 
