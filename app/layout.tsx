@@ -1,5 +1,7 @@
-import PWARegister from "@/components/PWARegister";
-import { SplashScreens } from "@/components/SplashScreens";
+import dynamic from 'next/dynamic';
+
+const PWARegister = dynamic(() => import("@/components/PWARegister"), { ssr: false });
+const SplashScreens = dynamic(() => import("@/components/SplashScreens").then(mod => mod.SplashScreens), { ssr: false });
 import { Footer } from "@/components/section/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
