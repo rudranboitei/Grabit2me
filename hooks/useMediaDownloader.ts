@@ -108,7 +108,7 @@ export function useMediaDownloader() {
       setMedia(data);
       toast.success('Media found!');
     } catch (err: unknown) {
-      toast.error(err.message || 'An error occurred. Please try again.');
+      toast.error(err instanceof Error ? err.message : 'An error occurred. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -190,7 +190,7 @@ export function useMediaDownloader() {
       setDownloading(false);
       setDownloadingFormat(null);
       setDownloadStatus('idle');
-      toast.error(err.message || 'Download failed. Please try again.');
+      toast.error(err instanceof Error ? err.message : 'Download failed. Please try again.');
     }
   };
 
