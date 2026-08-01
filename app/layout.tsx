@@ -2,6 +2,7 @@ import PWARegister from "@/components/PWARegister";
 import { SplashScreens } from "@/components/SplashScreens";
 import { Footer } from "@/components/section/Footer";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
@@ -128,6 +129,7 @@ export default function RootLayout({
       <body className="font-sans font-medium text-foreground" style={{ background: 'linear-gradient(#69b3e8 -1.8018%, #80c1ef 86%, #dee2ee 98%, #ffdbdb 100%)' }}>
         <PWARegister />
         <Analytics />
+        <GoogleAnalytics gaId="G-QPCN7YQQ5X" />
         <TooltipProvider>{children}</TooltipProvider>
         <Footer />
         <Toaster 
