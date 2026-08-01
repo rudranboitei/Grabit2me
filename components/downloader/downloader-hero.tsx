@@ -10,22 +10,22 @@ export function DownloaderHero() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center text-center space-y-6 mb-16 mt-8">
+    <div className="flex flex-col items-center justify-center text-center mb-24 mt-16 relative z-10">
+      
       {/* Small top title */}
-      <div className="text-xl md:text-2xl font-normal tracking-tight text-black flex items-center gap-2">
-        <div className="w-8 h-8 bg-black rounded-full text-white flex items-center justify-center text-sm font-bold">
-          G
-        </div>
-        GrabIt2Me
+      <div className="text-[14px] md:text-[16px] font-[500] tracking-tight text-[#1b1c1c] flex items-center justify-center gap-2 mb-6 opacity-80">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span>Fast & Free Downloader</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
       </div>
 
-      {/* Main massive headline as requested: Bricolage Grotesque, 730 weight, ~40px size, 110% line height, -0.4px tracking */}
-      <h1 className="text-[32px] md:text-[40px] font-[730] tracking-[-0.4px] text-[#1b1c1c] leading-[110%] max-w-4xl text-center mx-auto mt-4 mb-4">
-        Need a cool tool? <br/> I've got you covered
+      {/* Main massive headline as requested */}
+      <h1 className="text-[46px] sm:text-[64px] md:text-[84px] font-[730] tracking-[-0.04em] text-[#1b1c1c] leading-[1.05] max-w-[900px] text-center mx-auto mb-6">
+        Need to save reels? <br/> I've got you covered
       </h1>
       
-      <p className="text-[18px] md:text-[22px] text-black font-normal mt-2 max-w-2xl mx-auto leading-relaxed">
-        Downloading and saving media <br/> for creators and founders
+      <p className="text-[18px] md:text-[22px] text-[#1b1c1c]/90 font-normal max-w-2xl mx-auto leading-relaxed">
+        Downloading and saving media for creators and founders
       </p>
 
       {/* Action button matching the "Book a call" style */}
