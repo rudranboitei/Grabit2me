@@ -148,25 +148,25 @@ export default function InstallPWA() {
         {/* Reminder Banner for iOS */}
         {showReminderBanner && (
           <div className="fixed bottom-6 left-4 right-4 z-40 animate-in slide-in-from-bottom-5 duration-500 max-w-md mx-auto">
-            <div className="bg-white rounded-[24px] shadow-2xl p-2 pl-6 flex items-center justify-between gap-4 border border-gray-100">
+            <div className="bg-[#fbfeff] rounded-[40px] shadow-[inset_0px_-4px_4px_0px_rgb(210,203,198)] border-2 border-[rgba(199,196,194,0.3)] p-2 pl-6 flex items-center justify-between gap-4">
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center shrink-0 border border-gray-100">
+                <div className="w-10 h-10 bg-[#fbfeff] rounded-[16px] flex items-center justify-center shrink-0 border-2 border-[rgba(199,196,194,0.3)] shadow-[inset_0px_-2px_2px_0px_rgb(210,203,198)] overflow-hidden">
                   <img src="/icon-192.png" alt="GrabIt2Me Logo" className="h-7 w-7 object-contain" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-lg font-semibold text-black leading-tight">Install App</span>
+                  <span className="text-[16px] font-[730] text-[#1b1c1c] leading-tight tracking-tight">Install App</span>
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 <button 
                   onClick={handleReminderInstall}
-                  className="px-6 py-3 bg-black text-white rounded-[24px] font-semibold text-base hover:bg-gray-800 transition-colors"
+                  className="px-6 py-3 bg-[#ffc73b] text-[#1b1c1c] rounded-[40px] font-[730] text-[15px] shadow-[inset_0px_-4px_4px_0px_rgb(208,163,52)] border-2 border-[rgba(19,20,21,0.06)] hover:scale-105 transition-transform"
                 >
                   Get
                 </button>
                 <button
                   onClick={handleReminderDismiss}
-                  className="w-10 h-10 flex items-center justify-center rounded-[24px] text-gray-400 hover:text-black transition-colors"
+                  className="w-10 h-10 flex items-center justify-center rounded-full text-[#1b1c1c]/50 hover:text-[#1b1c1c] transition-colors"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -176,36 +176,36 @@ export default function InstallPWA() {
         )}
 
         <Sheet open={showIOSPrompt} onOpenChange={setShowIOSPrompt}>
-          <SheetContent side="bottom" className="h-auto bg-white/95 backdrop-blur-2xl border-t border-white/20 p-6 md:p-10 rounded-t-[40px] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.15)]">
+          <SheetContent side="bottom" className="h-auto bg-[#fbfeff] border-t-2 border-[rgba(199,196,194,0.3)] p-6 md:p-10 rounded-t-[40px] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.15)]">
             <div className="max-w-md mx-auto">
               <SheetHeader className="text-center mb-10 flex flex-col items-center">
-                <div className="w-24 h-24 rounded-[24px] bg-white flex items-center justify-center shrink-0 mb-6 shadow-2xl border border-gray-100">
+                <div className="w-24 h-24 rounded-[32px] bg-[#fbfeff] flex items-center justify-center shrink-0 mb-6 shadow-[inset_0px_-4px_4px_0px_rgb(210,203,198)] border-2 border-[rgba(199,196,194,0.3)]">
                   <img src="/icon-192.png" alt="GrabIt2Me Logo" className="w-16 h-16 object-contain" />
                 </div>
-                <SheetTitle className="text-3xl md:text-4xl font-semibold text-black tracking-tighter">Install GrabIt2Me</SheetTitle>
-                <SheetDescription className="text-base md:text-lg font-medium text-gray-500 mt-2">
+                <SheetTitle className="text-[32px] md:text-[40px] font-[730] text-[#1b1c1c] tracking-[-0.4px] leading-[110%]">Install GrabIt2Me</SheetTitle>
+                <SheetDescription className="text-[16px] md:text-[18px] font-normal text-[#1b1c1c]/70 mt-3">
                   Get the best experience directly on your home screen.
                 </SheetDescription>
               </SheetHeader>
 
               <div className="space-y-4 mb-10">
-                <ol className="space-y-6 text-lg md:text-xl text-gray-600 font-semibold tracking-tight">
+                <ol className="space-y-6 text-[16px] md:text-[18px] text-[#1b1c1c]/90 font-medium tracking-tight">
                   <li className="flex items-center gap-5">
-                    <span className="shrink-0 w-12 h-12 rounded-full bg-black flex items-center justify-center text-lg font-semibold text-white">1</span>
+                    <span className="shrink-0 w-12 h-12 rounded-[20px] bg-[#ffc73b] flex items-center justify-center text-[18px] font-[730] text-[#1b1c1c] shadow-[inset_0px_-4px_4px_0px_rgb(208,163,52)] border-2 border-[rgba(19,20,21,0.06)]">1</span>
                     <span>
-                      Tap <Share2 className="inline w-7 h-7 mx-1 text-black" /> Share below.
+                      Tap <Share2 className="inline w-6 h-6 mx-1 text-[#1b1c1c]" /> Share below.
                     </span>
                   </li>
                   <li className="flex items-center gap-5">
-                    <span className="shrink-0 w-12 h-12 rounded-full bg-black flex items-center justify-center text-lg font-semibold text-white">2</span>
+                    <span className="shrink-0 w-12 h-12 rounded-[20px] bg-[#ffc73b] flex items-center justify-center text-[18px] font-[730] text-[#1b1c1c] shadow-[inset_0px_-4px_4px_0px_rgb(208,163,52)] border-2 border-[rgba(19,20,21,0.06)]">2</span>
                     <span>
-                      Tap <strong className="text-black">"Add to Home Screen"</strong>.
+                      Tap <strong className="font-[730] text-[#1b1c1c]">"Add to Home Screen"</strong>.
                     </span>
                   </li>
                   <li className="flex items-center gap-5">
-                    <span className="shrink-0 w-12 h-12 rounded-full bg-black flex items-center justify-center text-lg font-semibold text-white">3</span>
+                    <span className="shrink-0 w-12 h-12 rounded-[20px] bg-[#ffc73b] flex items-center justify-center text-[18px] font-[730] text-[#1b1c1c] shadow-[inset_0px_-4px_4px_0px_rgb(208,163,52)] border-2 border-[rgba(19,20,21,0.06)]">3</span>
                     <span>
-                      Tap <strong className="text-black">"Add"</strong> to finish.
+                      Tap <strong className="font-[730] text-[#1b1c1c]">"Add"</strong> to finish.
                     </span>
                   </li>
                 </ol>
@@ -214,7 +214,7 @@ export default function InstallPWA() {
               <SheetFooter>
                 <button 
                   onClick={handleIOSDismiss} 
-                  className="w-full h-16 bg-black text-white rounded-[24px] font-semibold text-xl hover:bg-gray-800 transition-colors shadow-2xl"
+                  className="w-full h-16 bg-[#fbfeff] text-[#1b1c1c] rounded-[40px] font-[730] text-[18px] shadow-[inset_0px_-4px_4px_0px_rgb(210,203,198)] border-2 border-[rgba(199,196,194,0.3)] hover:scale-[1.02] transition-transform"
                 >
                   Done
                 </button>
@@ -232,25 +232,25 @@ export default function InstallPWA() {
       {/* Reminder Banner for Android/Desktop */}
       {showReminderBanner && (
         <div className="fixed bottom-6 left-4 right-4 z-40 animate-in slide-in-from-bottom-5 duration-500 max-w-md mx-auto">
-          <div className="bg-white rounded-[24px] shadow-2xl p-2 pl-6 flex items-center justify-between gap-4 border border-gray-100">
+          <div className="bg-[#fbfeff] rounded-[40px] shadow-[inset_0px_-4px_4px_0px_rgb(210,203,198)] border-2 border-[rgba(199,196,194,0.3)] p-2 pl-6 flex items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center shrink-0 border border-gray-100">
+              <div className="w-10 h-10 bg-[#fbfeff] rounded-[16px] flex items-center justify-center shrink-0 border-2 border-[rgba(199,196,194,0.3)] shadow-[inset_0px_-2px_2px_0px_rgb(210,203,198)] overflow-hidden">
                 <img src="/icon-192.png" alt="GrabIt2Me Logo" className="h-7 w-7 object-contain" />
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-semibold text-black leading-tight">Install App</span>
+                <span className="text-[16px] font-[730] text-[#1b1c1c] leading-tight tracking-tight">Install App</span>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <button 
                 onClick={handleReminderInstall}
-                className="px-6 py-3 bg-black text-white rounded-[24px] font-semibold text-base hover:bg-gray-800 transition-colors"
+                className="px-6 py-3 bg-[#ffc73b] text-[#1b1c1c] rounded-[40px] font-[730] text-[15px] shadow-[inset_0px_-4px_4px_0px_rgb(208,163,52)] border-2 border-[rgba(19,20,21,0.06)] hover:scale-105 transition-transform"
               >
                 Get
               </button>
               <button
                 onClick={handleReminderDismiss}
-                className="w-10 h-10 flex items-center justify-center rounded-[24px] text-gray-400 hover:text-black transition-colors"
+                className="w-10 h-10 flex items-center justify-center rounded-full text-[#1b1c1c]/50 hover:text-[#1b1c1c] transition-colors"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -260,36 +260,36 @@ export default function InstallPWA() {
       )}
 
       <Sheet open={showInstall} onOpenChange={setShowInstall}>
-        <SheetContent side="bottom" className="h-auto bg-white/95 backdrop-blur-2xl border-t border-white/20 p-6 md:p-10 rounded-t-[40px] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.15)]">
+        <SheetContent side="bottom" className="h-auto bg-[#fbfeff] border-t-2 border-[rgba(199,196,194,0.3)] p-6 md:p-10 rounded-t-[40px] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.15)]">
           <div className="max-w-md mx-auto">
             <SheetHeader className="text-center mb-10 flex flex-col items-center">
-              <div className="w-24 h-24 rounded-[24px] bg-white flex items-center justify-center shrink-0 mb-6 shadow-2xl border border-gray-100">
+              <div className="w-24 h-24 rounded-[32px] bg-[#fbfeff] flex items-center justify-center shrink-0 mb-6 shadow-[inset_0px_-4px_4px_0px_rgb(210,203,198)] border-2 border-[rgba(199,196,194,0.3)]">
                 <img src="/icon-192.png" alt="GrabIt2Me Logo" className="w-16 h-16 object-contain" />
               </div>
-              <SheetTitle className="text-3xl md:text-4xl font-semibold text-black tracking-tighter">Install GrabIt2Me</SheetTitle>
-              <SheetDescription className="text-base md:text-lg font-medium text-gray-500 mt-2">
+              <SheetTitle className="text-[32px] md:text-[40px] font-[730] text-[#1b1c1c] tracking-[-0.4px] leading-[110%]">Install GrabIt2Me</SheetTitle>
+              <SheetDescription className="text-[16px] md:text-[18px] font-normal text-[#1b1c1c]/70 mt-3">
                 Lightning fast access directly from your home screen.
               </SheetDescription>
             </SheetHeader>
 
             <div className="space-y-6 mb-10">
               <div className="flex items-center gap-5">
-                <div className="shrink-0 w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center text-black">
-                  <Smartphone className="w-7 h-7" />
+                <div className="shrink-0 w-14 h-14 rounded-[24px] bg-[#fbfeff] flex items-center justify-center text-[#1b1c1c] shadow-[inset_0px_-4px_4px_0px_rgb(210,203,198)] border-2 border-[rgba(199,196,194,0.3)]">
+                  <Smartphone className="w-7 h-7 text-[#1b1c1c]" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-semibold text-black tracking-tight">Works Offline</h4>
-                  <p className="text-gray-500 text-base font-medium mt-0.5">Reliable even with poor connection</p>
+                  <h4 className="text-[18px] md:text-[20px] font-[730] text-[#1b1c1c] tracking-tight">Works Offline</h4>
+                  <p className="text-[#1b1c1c]/70 text-[15px] font-normal mt-0.5">Reliable even with poor connection</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-5">
-                <div className="shrink-0 w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center text-black">
-                  <Download className="w-7 h-7" />
+                <div className="shrink-0 w-14 h-14 rounded-[24px] bg-[#fbfeff] flex items-center justify-center text-[#1b1c1c] shadow-[inset_0px_-4px_4px_0px_rgb(210,203,198)] border-2 border-[rgba(199,196,194,0.3)]">
+                  <Download className="w-7 h-7 text-[#1b1c1c]" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-semibold text-black tracking-tight">Lightning Fast</h4>
-                  <p className="text-gray-500 text-base font-medium mt-0.5">Native application performance</p>
+                  <h4 className="text-[18px] md:text-[20px] font-[730] text-[#1b1c1c] tracking-tight">Lightning Fast</h4>
+                  <p className="text-[#1b1c1c]/70 text-[15px] font-normal mt-0.5">Native application performance</p>
                 </div>
               </div>
             </div>
@@ -297,13 +297,13 @@ export default function InstallPWA() {
             <SheetFooter className="flex flex-col gap-4">
               <button 
                 onClick={handleInstallClick} 
-                className="w-full h-16 bg-black text-white rounded-[24px] font-semibold text-xl hover:bg-gray-800 transition-colors shadow-2xl"
+                className="w-full h-16 bg-[#ffc73b] text-[#1b1c1c] rounded-[40px] font-[730] text-[18px] shadow-[inset_0px_-4px_4px_0px_rgb(208,163,52)] border-2 border-[rgba(19,20,21,0.06)] hover:scale-[1.02] transition-transform"
               >
                 Install Now
               </button>
               <button 
                 onClick={handleDismiss} 
-                className="w-full h-16 bg-white text-gray-500 rounded-[24px] font-semibold text-lg hover:text-black transition-colors"
+                className="w-full h-16 bg-[#fbfeff] text-[#1b1c1c] rounded-[40px] font-[730] text-[18px] shadow-[inset_0px_-4px_4px_0px_rgb(210,203,198)] border-2 border-[rgba(199,196,194,0.3)] hover:scale-[1.02] transition-transform"
               >
                 Maybe Later
               </button>
