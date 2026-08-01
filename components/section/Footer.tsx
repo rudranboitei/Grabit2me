@@ -29,13 +29,12 @@ export const Footer = () => {
         </div>
 
         {/* Desktop: 3 scattered tree stickers inside the box */}
-        <div className="absolute left-[8%] bottom-[50%] -rotate-[10deg] pointer-events-none z-10 w-[70px] h-[70px] md:w-[120px] md:h-[120px]">
+        <div className="absolute left-[8%] bottom-[50%] -rotate-[10deg] pointer-events-none z-10 w-[120px] h-[120px] md:w-[200px] md:h-[200px]">
           <Image 
-            src="https://framerusercontent.com/images/yM9V9Gk1Z3b6Z4oOq8j5T8F4k.png?width=256&height=256" 
+            src="/cloude.avif" 
             alt="Cloud Sticker"
-            width={120} height={120}
-            unoptimized
-            className="w-full h-full object-cover drop-shadow-md opacity-80" 
+            width={200} height={200}
+            className="w-full h-full object-contain drop-shadow-md opacity-80" 
           />
         </div>
         
