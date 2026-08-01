@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 
 export const Footer = () => {
@@ -18,35 +19,43 @@ export const Footer = () => {
         
         {/* Mobile: Tree sticker on top right corner */}
         <div className="absolute -top-10 -right-6 z-20 block md:hidden">
-          <img 
+          <Image 
             src="https://framerusercontent.com/images/3F7ldnftLP0RuSKEOksr3928ms.webp?width=443&height=446" 
             alt="Tree Sticker" 
+            width={110} height={110}
+            unoptimized
             className="w-[110px] h-[110px] object-contain drop-shadow-sm" 
           />
         </div>
 
         {/* Desktop: 3 scattered tree stickers inside the box */}
-        <div className="absolute left-[10%] bottom-[20%] opacity-100 -rotate-[12deg] pointer-events-none z-0 hidden md:block">
-          <img 
-            src="https://framerusercontent.com/images/3F7ldnftLP0RuSKEOksr3928ms.webp?width=443&height=446" 
-            alt="Tree Sticker" 
-            className="w-[140px] h-[140px] object-cover" 
+        <div className="absolute left-[8%] bottom-[50%] -rotate-[10deg] pointer-events-none z-10 w-[70px] h-[70px] md:w-[120px] md:h-[120px]">
+          <Image 
+            src="https://framerusercontent.com/images/yM9V9Gk1Z3b6Z4oOq8j5T8F4k.png?width=256&height=256" 
+            alt="Cloud Sticker"
+            width={120} height={120}
+            unoptimized
+            className="w-full h-full object-cover drop-shadow-md opacity-80" 
           />
         </div>
         
-        <div className="absolute right-[22%] bottom-[12%] opacity-100 rotate-[5deg] pointer-events-none z-0 hidden md:block">
-          <img 
+        <div className="absolute right-[15%] bottom-[10%] rotate-[5deg] pointer-events-none z-10 w-[50px] h-[50px] md:w-[90px] md:h-[90px]">
+          <Image 
             src="https://framerusercontent.com/images/3F7ldnftLP0RuSKEOksr3928ms.webp?width=443&height=446" 
-            alt="Tree Sticker" 
-            className="w-[120px] h-[120px] object-cover" 
+            alt="Tree Sticker Small"
+            width={90} height={90}
+            unoptimized
+            className="w-full h-full object-cover drop-shadow-md opacity-60" 
           />
         </div>
 
-        <div className="absolute right-[5%] bottom-[30%] opacity-100 rotate-[15deg] pointer-events-none z-0 hidden md:block">
-          <img 
+        <div className="absolute right-[5%] -top-[30%] rotate-[15deg] pointer-events-none z-10 w-[60px] h-[60px] md:w-[100px] md:h-[100px]">
+          <Image 
             src="https://framerusercontent.com/images/3F7ldnftLP0RuSKEOksr3928ms.webp?width=443&height=446" 
-            alt="Tree Sticker" 
-            className="w-[180px] h-[180px] object-cover" 
+            alt="Tree Sticker"
+            width={100} height={100}
+            unoptimized
+            className="w-full h-full object-cover drop-shadow-md" 
           />
         </div>
 
@@ -83,11 +92,11 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Links */}
-        <div className="flex flex-col items-center justify-center text-[15px] md:text-[17px] text-[#1b1c1c] font-[730] relative z-20 gap-1 md:gap-2 mt-12 md:mt-8">
-          <a href="https://x.com/GrabIt2Me" target="_blank" rel="noopener" className="underline hover:opacity-70">
-            Follow us on X
-          </a>
-          <span>© GrabIt2Me {new Date().getFullYear()}</span>
+        <div className="flex flex-col items-center justify-center text-[14px] md:text-[16px] font-normal text-[#1b1c1c]/70 text-center relative z-20 mt-12 md:mt-8">
+          © {new Date().getFullYear()} GrabIt2Me. Follow us on{' '}
+          <Link href="https://x.com/GrabIt2Me" target="_blank" rel="noopener" className="underline hover:opacity-70">
+            X
+          </Link>.
         </div>
       </div>
     </footer>

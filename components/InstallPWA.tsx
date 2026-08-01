@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import Image from 'next/image';
 
 export default function InstallPWA() {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
@@ -151,7 +152,7 @@ export default function InstallPWA() {
             <div className="bg-[#fbfeff] rounded-[40px] shadow-[inset_0px_-4px_4px_0px_rgb(210,203,198)] border-2 border-[rgba(199,196,194,0.3)] p-2 pl-6 flex items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 bg-[#fbfeff] rounded-[16px] flex items-center justify-center shrink-0 border-2 border-[rgba(199,196,194,0.3)] shadow-[inset_0px_-2px_2px_0px_rgb(210,203,198)] overflow-hidden">
-                  <img src="/icon-192.png" alt="GrabIt2Me Logo" className="h-7 w-7 object-contain" />
+                  <Image src="/icon-192.png" alt="GrabIt2Me Logo" width={28} height={28} className="h-7 w-7 object-contain" />
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[16px] font-[730] text-[#1b1c1c] leading-tight tracking-tight">Install App</span>
@@ -180,7 +181,7 @@ export default function InstallPWA() {
             <div className="max-w-md mx-auto">
               <SheetHeader className="text-center mb-10 flex flex-col items-center">
                 <div className="w-24 h-24 rounded-[32px] bg-[#fbfeff] flex items-center justify-center shrink-0 mb-6 shadow-[inset_0px_-4px_4px_0px_rgb(210,203,198)] border-2 border-[rgba(199,196,194,0.3)]">
-                  <img src="/icon-192.png" alt="GrabIt2Me Logo" className="w-16 h-16 object-contain" />
+                  <Image src="/icon-192.png" alt="GrabIt2Me Logo" width={64} height={64} className="w-16 h-16 object-contain" />
                 </div>
                 <SheetTitle className="text-[32px] md:text-[40px] font-[730] text-[#1b1c1c] tracking-[-0.4px] leading-[110%]">Install GrabIt2Me</SheetTitle>
                 <SheetDescription className="text-[16px] md:text-[18px] font-normal text-[#1b1c1c]/70 mt-3">
@@ -235,7 +236,7 @@ export default function InstallPWA() {
           <div className="bg-[#fbfeff] rounded-[40px] shadow-[inset_0px_-4px_4px_0px_rgb(210,203,198)] border-2 border-[rgba(199,196,194,0.3)] p-2 pl-6 flex items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 bg-[#fbfeff] rounded-[16px] flex items-center justify-center shrink-0 border-2 border-[rgba(199,196,194,0.3)] shadow-[inset_0px_-2px_2px_0px_rgb(210,203,198)] overflow-hidden">
-                <img src="/icon-192.png" alt="GrabIt2Me Logo" className="h-7 w-7 object-contain" />
+                <Image src="/icon-192.png" alt="GrabIt2Me Logo" width={28} height={28} className="h-7 w-7 object-contain" />
               </div>
               <div className="flex flex-col">
                 <span className="text-[16px] font-[730] text-[#1b1c1c] leading-tight tracking-tight">Install App</span>
@@ -264,7 +265,7 @@ export default function InstallPWA() {
           <div className="max-w-md mx-auto">
             <SheetHeader className="text-center mb-10 flex flex-col items-center">
               <div className="w-24 h-24 rounded-[32px] bg-[#fbfeff] flex items-center justify-center shrink-0 mb-6 shadow-[inset_0px_-4px_4px_0px_rgb(210,203,198)] border-2 border-[rgba(199,196,194,0.3)]">
-                <img src="/icon-192.png" alt="GrabIt2Me Logo" className="w-16 h-16 object-contain" />
+                <Image src="/icon-192.png" alt="GrabIt2Me Logo" width={64} height={64} className="w-16 h-16 object-contain" />
               </div>
               <SheetTitle className="text-[32px] md:text-[40px] font-[730] text-[#1b1c1c] tracking-[-0.4px] leading-[110%]">Install GrabIt2Me</SheetTitle>
               <SheetDescription className="text-[16px] md:text-[18px] font-normal text-[#1b1c1c]/70 mt-3">

@@ -49,9 +49,11 @@ export function BehindTheScenesSection() {
       
       {/* Floating Tree Sticker */}
       <div className="absolute right-[5%] top-[5%] opacity-80 rotate-[15deg] pointer-events-none hidden md:block">
-        <img 
+        <Image 
           src="https://framerusercontent.com/images/3F7ldnftLP0RuSKEOksr3928ms.webp?width=443&height=446" 
           alt="Tree Sticker" 
+          width={120} height={120}
+          unoptimized
           className="w-[120px] h-[120px] object-cover drop-shadow-lg" 
         />
       </div>
