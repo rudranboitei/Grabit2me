@@ -4,8 +4,6 @@ import * as React from 'react';
 import { toast } from 'sonner';
 import { Download, Loader2, Play, Volume2, VolumeX, ExternalLink } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 
 interface MediaResponse {
   type: 'video' | 'image';

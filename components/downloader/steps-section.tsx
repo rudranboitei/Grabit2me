@@ -36,7 +36,7 @@ export function StepsSection() {
 
       {/* Steps Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {steps.map((step, idx) => (
+        {steps.map((step) => (
           <div
             key={step.title}
             className="relative flex flex-col p-6 sm:p-8 rounded-xl border border-cloud-gray bg-white/50 backdrop-blur-sm hover:border-cool-gray hover:bg-white/80 transition-all duration-300 group"

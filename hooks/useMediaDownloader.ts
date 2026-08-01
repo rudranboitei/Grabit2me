@@ -107,7 +107,7 @@ export function useMediaDownloader() {
 
       setMedia(data);
       toast.success('Media found!');
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast.error(err.message || 'An error occurred. Please try again.');
     } finally {
       setLoading(false);
@@ -185,7 +185,7 @@ export function useMediaDownloader() {
         setDownloadingFormat(null);
         setDownloadStatus('idle');
       }, 1000);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Download failed:', err);
       setDownloading(false);
       setDownloadingFormat(null);

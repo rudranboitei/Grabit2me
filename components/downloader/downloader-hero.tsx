@@ -1,7 +1,5 @@
 'use client';
 
-import { Download } from 'lucide-react';
-import Image from 'next/image';
 
 export function DownloaderHero() {
   const handleInstallClick = (e: React.MouseEvent) => {
